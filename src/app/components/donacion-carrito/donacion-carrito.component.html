@@ -1,19 +1,66 @@
 <div class="carrito card">
   <h4>Tu donación</h4>
-  <div *ngFor="let item of carrito">
-    <div class="item-carrito">
+
+  <!-- Área con scroll para productos -->
+  <div class="carrito-scroll">
+    <div *ngFor="let item of carrito" class="item-carrito">
       <img [src]="item.imagen" alt="{{ item.nombre }}" />
       <div class="info">
         <strong>{{ item.nombre }}</strong>
-        <p>Cant: {{ item.cantidad }}</p>
-        <p>\${{ item.precio.toFixed(2) }}</p>
+        <p style="margin: 0;">Cant: {{ item.cantidad }}</p>
+        <p style="margin: 0;">\${{ item.precio.toFixed(2) }}</p>
+        <div class="barra">
+          <div class="progreso" [style.width.%]="(item.obtenido / item.meta) * 100"></div>
+        </div>
+        <small>{{ item.obtenido }} obtenidos &nbsp;&nbsp;&nbsp; Meta: {{ item.meta }}</small>
       </div>
+      <button class="btn-quitar" (click)="quitarProducto.emit(item)" title="Eliminar">
+        <svg xmlns="http://www.w3.org/2000/svg" height="20" width="20" viewBox="0 0 20 20" fill="#d32f2f">
+          <path d="M7.5 8.5v6m5-6v6M4 6.5h12M8.5 3.5h3a1 1 0 0 1 1 1v1h-5v-1a1 1 0 0 1 1-1zM5 6.5v10a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1v-10"/>
+        </svg>
+      </button>
     </div>
   </div>
 
+  <!-- Totales -->
   <div class="resumen">
-    <p>Subtotal: <strong>\${{ subtotal }}</strong></p>
-    <p>Cargos de pasarela: <strong>\${{ cargosPasarela }}</strong></p>
-    <p>Total: <strong>\${{ total }}</strong></p>
+    <p>Subtotal: <strong>\${{ subtotal.toFixed(2) }}</strong></p>
+    <p>Cargos de pasarela: <strong>\${{ cargosPasarela.toFixed(2) }}</strong></p>
+    <p class="total">Total: <strong>\${{ total.toFixed(2) }}</strong></p>
+  </div>
+
+  <!-- Información adicional -->
+  <div class="info-extra">
+    <div class="box info-donacion">
+      <strong>¿Cómo se utiliza tu donación?</strong>
+      <ul>
+        <li>85% atención directa a beneficiarios</li>
+        <li>10% operaciones y logística</li>
+        <li>5% recaudación y administración</li>
+      </ul>
+    </div>
+
+    <div class="box metodos">
+      <strong>Métodos de pago disponibles:</strong>
+      <div class="tags">
+        <span>Tarjetas</span>
+        <span>Código QR</span>
+        <span>PayPhone</span>
+        <span>PayPal</span>
+        <span>Billeteras</span>
+      </div>
+    </div>
+
+    <div class="box homenaje">
+      <strong>🤍 Donación en homenaje</strong>
+      <p>Puedes dedicar tu donación en honor o memoria de alguien especial.</p>
+    </div>
+
+    <div class="box verificada">
+      <strong>✅ Organización Verificada</strong>
+      <p>Esta organización ha sido verificada por nuestro equipo.</p>
+    </div>
+
+    <button class="btn-vermas">🔍 Ver más información sobre esta causa</button>
   </div>
 </div>

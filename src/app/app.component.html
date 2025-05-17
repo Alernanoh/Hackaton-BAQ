@@ -12,10 +12,11 @@
     </div>
 
     <div class="col">
-      <app-donacion-carrito [carrito]="carrito"></app-donacion-carrito>
+      <app-donacion-carrito [carrito]="carrito" (quitarProducto)="quitarDelCarrito($event)">
+      </app-donacion-carrito>
       <app-info-donante></app-info-donante>
     </div>
   </div>
 </div>
+<app-footer></app-footer>
 <router-outlet></router-outlet>
-<app-footer />
