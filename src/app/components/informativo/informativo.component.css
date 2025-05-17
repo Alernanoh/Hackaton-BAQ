@@ -1,191 +1,88 @@
-/* Updated form.component.css based on layout proportions and padding from provided design */
-
-.donation-container {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  padding: 40px 60px;
-  background-color: #fafafa;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
-
-.form-section {
-  width: 60%;
-  background-color: #fff;
-  padding: 30px;
-  border-radius: 12px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
-}
-
 .info-section {
-  width: 35%;
-  background-color: #fff;
-  padding: 25px;
+  background: #fff;
+  padding: 1.5rem;
   border-radius: 12px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
   display: flex;
   flex-direction: column;
-  gap: 20px;
-}
-
-h2, h3, h4 {
+  gap: 1.5rem;
+  font-size: 0.95rem;
   color: #333;
-  margin-bottom: 10px;
 }
 
-.amount-options {
-  display: flex;
-  gap: 10px;
-  margin-bottom: 15px;
+.info-section h4 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #f7941d;
+  margin-bottom: 0.5rem;
 }
 
-.amount-options button {
-  padding: 10px 20px;
-  border: 2px solid #f7931e;
-  background-color: transparent;
-  color: #f7931e;
-  font-weight: bold;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: background-color 0.2s;
+.info-section ul,
+.info-section ol {
+  padding-left: 1.2rem;
+  margin: 0.5rem 0;
 }
 
-.amount-options button.active,
-.amount-options button:hover {
-  background-color: #f7931e;
-  color: white;
+.info-section ul li,
+.info-section ol li {
+  margin-bottom: 0.4rem;
+  line-height: 1.4;
 }
 
-.amount-input {
-  width: 100%;
-  margin-bottom: 20px;
-  padding: 10px;
-  font-size: 1.1em;
-  border: 2px solid #ccc;
-  border-radius: 6px;
+.verified-org {
+  background: #f9f5f0;
+  border: 1px solid #f3e2c7;
+  padding: 1rem;
+  border-radius: 10px;
 }
 
-.form-group {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  margin-bottom: 15px;
-}
-
-.form-group input {
-  flex: 1 1 48%;
-  padding: 10px;
-  border: 1.5px solid #ccc;
-  border-radius: 6px;
-  transition: border-color 0.2s;
-}
-
-.form-group input:focus {
-  border-color: #f7931e;
-  outline: none;
-}
-
-.payment-methods {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  margin-bottom: 15px;
-}
-
-.payment-methods button {
-  flex: 1 1 48%;
-  padding: 10px;
-  border: 2px solid #f7931e;
-  background-color: transparent;
-  color: #f7931e;
-  font-weight: bold;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: background-color 0.2s;
-}
-
-.payment-methods button.active,
-.payment-methods button:hover {
-  background-color: #f7931e;
-  color: white;
-}
-
-.donate-btn {
-  width: 100%;
-  padding: 15px;
-  background-color: #f7931e;
-  color: white;
-  font-size: 1.1em;
-  font-weight: bold;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: 0.3s;
-  margin-top: 10px;
-}
-
-.donate-btn:hover {
-  background-color: #e48217;
-}
-
-small {
-  display: block;
-  margin-top: 10px;
-  font-size: 0.8em;
-  color: #555;
-}
-
-.info-section ul, .info-section ol {
-  margin-left: 20px;
-  color: #333;
-  line-height: 1.6;
-}
-
-.verified-org p {
-  background-color: #e8f5e9;
-  border-left: 4px solid #4caf50;
-  padding: 10px;
-  border-radius: 6px;
-  font-size: 0.95em;
+.verified-org .verified {
+  font-size: 0.9rem;
+  margin-bottom: 0.5rem;
 }
 
 .more-info {
-  margin-top: 10px;
-  padding: 8px 12px;
-  background-color: #f7931e;
-  color: white;
+  margin-top: 0.5rem;
+  background: #f1f1f1;
   border: none;
-  border-radius: 6px;
+  padding: 0.6rem 1rem;
+  border-radius: 8px;
+  font-weight: bold;
   cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.about-cause,
+.usage-info,
+.how-to-donate,
+.share,
+.secure-donation {
+  background: #f9f5f0;
+  border: 1px solid #f3e2c7;
+  padding: 1rem;
+  border-radius: 10px;
 }
 
 .share button {
-  margin-right: 10px;
-  background-color: #1877f2;
-  color: white;
-  padding: 8px 12px;
-  border-radius: 6px;
+  background: #f1f1f1;
   border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  margin-right: 0.5rem;
   cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: background 0.2s ease;
 }
 
-.share button:nth-child(2) {
-  background-color: #1da1f2;
+.share button:hover {
+  background: #e2e2e2;
 }
 
-@media (max-width: 768px) {
-  .donation-container {
-    flex-direction: column;
-    padding: 20px;
-  }
+.secure-donation ul li {
+  padding-left: 0.2rem;
+  margin-bottom: 0.5rem;
+}
 
-  .form-section, .info-section {
-    width: 100%;
-    max-width: 100%;
-  }
-
-  .payment-methods button,
-  .form-group input {
-    flex: 1 1 100%;
-  }
+.secure-donation ul li strong {
+  color: #f7941d;
 }
