@@ -1,6 +1,5 @@
 <div class="banner-causa">
-  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQEBoOjaM6FPvtpu3JbMtLKRAONC6Lv1CDqWg&s"
-    alt="Imagen de la causa" class="banner-img" />
+  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQEBoOjaM6FPvtpu3JbMtLKRAONC6Lv1CDqWg&s" alt="Imagen de la causa" class="banner-img" />
 
   <div class="info-causa">
     <h1>Ayuda a 300 ancianos abandonados</h1>
@@ -17,24 +16,9 @@
     </div>
 
     <div class="tabs">
-      <button class="tab" [class.active]="seccionActiva === 'productos'" (click)="cambiarSeccion('productos')">📦
-        Productos</button>
-      <button class="tab" [class.active]="seccionActiva === 'proyecto'" (click)="cambiarSeccion('proyecto')">ℹ️
-        Proyecto</button>
-      <button class="tab" [class.active]="seccionActiva === 'actualizaciones'"
-        (click)="cambiarSeccion('actualizaciones')">📰 Actualizaciones</button>
-    </div>
-
-    <div class="contenido-seccion mt-4">
-      <div *ngIf="seccionActiva === 'productos'">
-        <app-ayuda />
-      </div>
-      <div *ngIf="seccionActiva === 'proyecto'">
-        <app-donacion-carrito />
-      </div>
-      <div *ngIf="seccionActiva === 'actualizaciones'">
-        Aquí van las Actualizaciones recientes.
-      </div>
+      <button class="tab active">📦 Productos</button>
+      <button class="tab" >ℹ️ Proyecto</button>
+      <button class="tab">📰 Actualizaciones</button>
     </div>
   </div>
 </div>
