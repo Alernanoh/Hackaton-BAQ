@@ -55,7 +55,7 @@ export class FormComponent {
     const valor = this.numeroIdentificacion;
 
     if (tipo === 'cedula' && valor.length !== 10) {
-      alert('Número de cédula inválido (debe tener 10 dígitos)');
+      alert('Número de cédula inválido');
       return;
     }
 
