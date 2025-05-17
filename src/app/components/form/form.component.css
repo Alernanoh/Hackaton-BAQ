@@ -129,8 +129,44 @@
   margin-top: 1rem;
 }
 
+.btn-gray {
+  background: #eee;
+  color: #333;
+  border: none;
+  border-radius: 6px;
+  padding: 0.3rem 0.7rem;
+  cursor: pointer;
+  font-size: 0.95rem;
+}
+
 small {
   margin-top: 0.5rem;
   font-size: 0.85rem;
   color: #666;
+}
+
+.progressbar {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+}
+.progressbar-bar {
+  width: 24px;
+  height: 24px;
+  border: 3px solid #f7941d;
+  border-top: 3px solid #fff;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+@keyframes spin {
+  100% { transform: rotate(360deg); }
+}
+.btn-orange.disabled {
+  opacity: 0.4;
+  cursor: not-allowed !important;
+  pointer-events: none;
+}
+
+.btn-orange.disabled:hover {
+  cursor: not-allowed;
 }

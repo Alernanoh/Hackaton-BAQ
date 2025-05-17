@@ -3,7 +3,6 @@ import { AyudaComponent } from '../ayuda/ayuda.component';
 import { ProductosListComponent } from '../productos-list/productos-list.component';
 import { ResumenCampanaComponent } from '../resumen-campana/resumen-campana.component';
 import { DonacionCarritoComponent } from '../donacion-carrito/donacion-carrito.component';
-import { InfoDonanteComponent } from '../info-donante/info-donante.component';
 import { FormComponent } from '../form/form.component';
 import { InformativoComponent } from '../informativo/informativo.component';
 
@@ -13,10 +12,8 @@ import { InformativoComponent } from '../informativo/informativo.component';
     ProductosListComponent,
     ResumenCampanaComponent,
     DonacionCarritoComponent,
-    InfoDonanteComponent,
     FormComponent,
-    InformativoComponent
-
+    InformativoComponent,
   ],
   templateUrl: './dona-proposito.component.html',
   styleUrl: './dona-proposito.component.css'
