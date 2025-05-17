@@ -7,6 +7,8 @@ import { InfoDonanteComponent } from './components/info-donante/info-donante.com
 import { ResumenCampanaComponent } from './components/resumen-campana/resumen-campana.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { HeaderComponent } from './components/header/header.component';
+import { FormComponent } from "./components/form/form.component";
+import { InformativoComponent } from "./components/informativo/informativo.component";
 
 @Component({
   selector: 'app-root',
@@ -19,8 +21,10 @@ import { HeaderComponent } from './components/header/header.component';
     InfoDonanteComponent,
     ResumenCampanaComponent,
     FooterComponent,
-    HeaderComponent
-  ],
+    HeaderComponent,
+    FormComponent,
+    InformativoComponent
+],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })

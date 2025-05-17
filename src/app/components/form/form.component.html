@@ -1,0 +1,80 @@
+<!-- form.component.html -->
+<div class="donation-container">
+  <div class="form-section">
+    <h2>¿Cuánto quieres donar?</h2>
+    <div class="amount-options">
+      <button>$12</button>
+      <button class="active">$22</button>
+      <button>$36</button>
+      <button>$100</button>
+    </div>
+    <input type="number" placeholder="$" class="amount-input">
+
+    <div class="info-donante">
+      <h3>Información del donante</h3>
+      <div class="anonimo-checkbox">
+        <input type="checkbox"> <label>Donar anónimamente</label>
+      </div>
+
+      <div class="inputs">
+        <div class="input-group">
+          <label>Nombre *</label>
+          <input type="text" placeholder="Nombre *">
+        </div>
+        <div class="input-group">
+          <label>Apellido *</label>
+          <input type="text" placeholder="Apellido *">
+        </div>
+      </div>
+
+      <div class="inputs">
+        <div class="input-group">
+          <label>Correo electrónico *</label>
+          <input type="email" placeholder="Correo electrónico *">
+        </div>
+        <div class="input-group">
+          <label>Teléfono</label>
+          <input type="tel" placeholder="Teléfono">
+        </div>
+      </div>
+
+      <div class="anonimo-checkbox">
+        <input type="checkbox"> <label>Donar en homenaje a alguien especial</label>
+      </div>
+      <p>Te enviaremos un recibo de donación a tu correo electrónico.</p>
+    </div>
+
+    <h3>Método de pago</h3>
+    <div class="payment-methods">
+      <button class="active">Tarjeta de crédito/débito</button>
+      <button>Código QR Banco Pichincha</button>
+      <button>PayPhone</button>
+      <button>PayPal</button>
+      <button>Transferencia bancaria</button>
+      <button>Billeteras móviles</button>
+    </div>
+    <div class="inputs">
+      <div class="input-group">
+        <label>Número de tarjeta</label>
+        <input type="text" placeholder="Número de tarjeta">
+      </div>
+      <div class="input-group">
+        <label>Fecha de expiración (MM/AA)</label>
+        <input type="text" placeholder="Fecha de expiración (MM/AA)">
+      </div>
+      <div class="input-group">
+        <label>CVV</label>
+        <input type="text" placeholder="CVV">
+      </div>
+      <div class="input-group">
+        <label>Nombre en la tarjeta</label>
+        <input type="text" placeholder="Nombre en la tarjeta">
+      </div>
+    </div>
+
+    <button class="btn-orange">Donar ahora</button>
+    <small>Al realizar tu donación, aceptas nuestros términos y políticas de privacidad</small>
+  </div>
+
+  
+</div>

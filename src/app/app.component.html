@@ -9,12 +9,23 @@
       </app-productos-list>
 
       <app-resumen-campana></app-resumen-campana>
+      
     </div>
+
+   
 
     <div class="col">
       <app-donacion-carrito [carrito]="carrito" (quitarProducto)="quitarDelCarrito($event)">
       </app-donacion-carrito>
       <app-info-donante></app-info-donante>
+
+    </div>
+     <div class="col">
+      <app-form></app-form>
+    </div>
+
+     <div class="col">
+      <app-informativo></app-informativo>
     </div>
   </div>
 </div>
