@@ -1,0 +1,27 @@
+.carrito {
+  background: #fff;
+  padding: 1rem;
+  border-radius: 12px;
+
+  .item-carrito {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+
+    img {
+      width: 48px;
+      height: 48px;
+      object-fit: cover;
+    }
+
+    .info {
+      flex: 1;
+    }
+  }
+
+  .resumen {
+    margin-top: 1rem;
+    font-size: 0.95rem;
+  }
+}
