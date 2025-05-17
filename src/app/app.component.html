@@ -1,18 +1,20 @@
+<<<<<<< HEAD
+=======
+<app-header />
+<router-outlet></router-outlet>
+<app-footer />
+>>>>>>> eefe7cd56ff42dddcc1761d7b0a8cb5365fab058
 <div class="container">
   <h1>🎁 Dona con propósito</h1>
 
   <div class="grid">
-    <!-- Columna izquierda: Productos y resumen de la campana -->
     <div class="col">
-      <app-productos-list
-        [productos]="productos"
-        (agregarProducto)="agregarAlCarrito($event)">
+      <app-productos-list [productos]="productos" (agregarProducto)="agregarAlCarrito($event)">
       </app-productos-list>
 
       <app-resumen-campana></app-resumen-campana>
     </div>
 
-    <!-- Columna derecha: Carrito y datos del donante -->
     <div class="col">
       <app-donacion-carrito
         [carrito]="carrito"
@@ -22,4 +24,8 @@
     </div>
   </div>
 </div>
+<<<<<<< HEAD
 <app-footer></app-footer>
+=======
+<router-outlet></router-outlet>
+>>>>>>> eefe7cd56ff42dddcc1761d7b0a8cb5365fab058
