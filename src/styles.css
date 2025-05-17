@@ -3,13 +3,20 @@ body {
   background-color: #f9fafb;
   color: #1a1a1a;
   margin: 0;
+  padding: 0;
+  width: 100vw;
+  min-height: 100vh;
+  overflow-x: hidden; /* Evita scroll horizontal */
 }
 
 .container {
   max-width: 1200px;
   margin: auto;
   padding: 2rem;
+  box-sizing: border-box;
+  width: 100%;
 }
+
 .card {
   background: #fff;
   border-radius: 12px;
@@ -35,4 +42,10 @@ body {
 .progress-bar > div {
   background-color: #f7941d;
   height: 100%;
+}
+
+@media (max-width: 900px) {
+  .container {
+    padding: 1rem;
+  }
 }

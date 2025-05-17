@@ -1,31 +1,25 @@
 import { Component } from '@angular/core';
-<<<<<<< HEAD
 import { RouterOutlet } from '@angular/router';
-import { FooterComponent } from './footer/footer.component';
-import { HeaderComponent } from './header/header.component';
-
-@Component({
-  selector: 'app-root',
-  imports: [RouterOutlet,
-    FooterComponent,
-    HeaderComponent
-=======
 import { CommonModule } from '@angular/common';
 import { ProductosListComponent } from './components/productos-list/productos-list.component';
 import { DonacionCarritoComponent } from './components/donacion-carrito/donacion-carrito.component';
 import { InfoDonanteComponent } from './components/info-donante/info-donante.component';
 import { ResumenCampanaComponent } from './components/resumen-campana/resumen-campana.component';
+import { FooterComponent } from './components/footer/footer.component';
+import { HeaderComponent } from './components/header/header.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
   imports: [
+    RouterOutlet,
     CommonModule,
     ProductosListComponent,
     DonacionCarritoComponent,
     InfoDonanteComponent,
-    ResumenCampanaComponent
->>>>>>> 4236f75f3718f51872fd9e91d77eec973c61080d
+    ResumenCampanaComponent,
+    FooterComponent,
+    HeaderComponent
   ],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
@@ -38,7 +32,7 @@ export class AppComponent {
     {
       nombre: 'Kit de Alimentación Básico',
       descripcion: 'Proporciona alimentos para una semana',
-      imagen: 'assets/kit-alimentacion.png',
+      imagen: '/kit-alimentacion.png',
       precio: 7.75,
       obtenido: 1180,
       meta: 2000
@@ -46,7 +40,7 @@ export class AppComponent {
     {
       nombre: 'Kit de Higiene',
       descripcion: 'Incluye artículos básicos de aseo',
-      imagen: 'assets/kit-higiene.png',
+      imagen: '/kit-higiene.png',
       precio: 6.54,
       obtenido: 835,
       meta: 2000
@@ -54,7 +48,7 @@ export class AppComponent {
     {
       nombre: 'Botiquín de primeros auxilios',
       descripcion: 'Para emergencias básicas',
-      imagen: 'assets/botiquin.png',
+      imagen: '/botiquin.png',
       precio: 8.90,
       obtenido: 430,
       meta: 1000
@@ -67,6 +61,17 @@ export class AppComponent {
       itemExistente.cantidad++;
     } else {
       this.carrito.push({ ...producto, cantidad: 1 });
+    }
+  }
+
+  quitarDelCarrito(producto: any) {
+    const idx = this.carrito.findIndex(p => p.nombre === producto.nombre);
+    if (idx > -1) {
+      if (this.carrito[idx].cantidad > 1) {
+        this.carrito[idx].cantidad--;
+      } else {
+        this.carrito.splice(idx, 1);
+      }
     }
   }
 }
