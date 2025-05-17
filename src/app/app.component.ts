@@ -3,7 +3,6 @@ import { RouterOutlet } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { ProductosListComponent } from './components/productos-list/productos-list.component';
 import { DonacionCarritoComponent } from './components/donacion-carrito/donacion-carrito.component';
-import { InfoDonanteComponent } from './components/info-donante/info-donante.component';
 import { ResumenCampanaComponent } from './components/resumen-campana/resumen-campana.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { HeaderComponent } from './components/header/header.component';
@@ -19,7 +18,6 @@ import { AyudaComponent } from "./components/ayuda/ayuda.component";
     CommonModule,
     ProductosListComponent,
     DonacionCarritoComponent,
-    InfoDonanteComponent,
     ResumenCampanaComponent,
     FooterComponent,
     HeaderComponent,

@@ -1,4 +1,3 @@
-
 <div class="donation-container">
   <div class="form-section">
     <h2>¿Cuánto quieres donar?</h2>
@@ -8,73 +7,126 @@
       <button>$36</button>
       <button>$100</button>
     </div>
-    <input type="number" placeholder="$" class="amount-input">
+    <input type="number" placeholder="$" class="amount-input" />
 
     <div class="info-donante">
       <h3>Información del donante</h3>
-      <div class="anonimo-checkbox">
-        <input type="checkbox"> <label>Donar anónimamente</label>
+
+      <!-- Selección de nacionalidad -->
+      <div class="input-group">
+        <label>Tipo de donante</label>
+        <select [(ngModel)]="tipoDonante" (change)="cambiarTipoDonante(tipoDonante)">
+          <option value="extranjero">Extranjero</option>
+          <option value="ecuatoriano">Ecuatoriano</option>
+        </select>
       </div>
 
-      <div class="inputs">
+      <!-- Sección ECUATORIANO -->
+      <div *ngIf="tipoDonante === 'ecuatoriano'">
         <div class="input-group">
-          <label>Nombre *</label>
-          <input type="text" placeholder="Nombre *">
+          <label>Tipo de identificación</label>
+          <select [(ngModel)]="tipoIdentificacion">
+            <option value="cedula">Cédula</option>
+            <option value="ruc">RUC</option>
+          </select>
         </div>
+
         <div class="input-group">
-          <label>Apellido *</label>
-          <input type="text" placeholder="Apellido *">
+          <label>Número</label>
+          <input
+            type="text"
+            [(ngModel)]="numeroIdentificacion"
+            placeholder="Ingrese número de identificación"
+            [disabled]="validado || cargando"
+          />
+        </div>
+
+        <!-- Progressbar -->
+        <div *ngIf="cargando" class="progressbar" style="margin-bottom: 1rem;">
+          <div class="progressbar-bar"></div>
+          <span>Validando identificación...</span>
+        </div>
+
+        <!-- Botón Validar -->
+        <button
+          *ngIf="!validado"
+          class="btn-orange"
+          [class.disabled]="cargando"
+          (click)="validarIdentificacion()"
+          [disabled]="cargando"
+        >
+          Validar
+        </button>
+
+        <!-- Botón Volver a empezar -->
+        <button
+          *ngIf="validado"
+          class="btn-gray"
+          style="margin-left: 1rem;"
+          type="button"
+          (click)="volverAEmpezar()"
+        >
+          Volver a empezar
+        </button>
+
+        <!-- Resultado desde la API -->
+        <div *ngIf="validado" class="inputs" style="margin-top: 1rem;">
+          <div class="input-group">
+            <label>Nombre *</label>
+            <input type="text" [value]="datosValidados.nombre" disabled />
+          </div>
+          <div class="input-group">
+            <label>Apellido / Nombre Comercial</label>
+            <input type="text" [value]="datosValidados.apellido" disabled />
+          </div>
+          <div class="input-group" *ngIf="datosValidados.actividad">
+            <label>Actividad Económica</label>
+            <input type="text" [value]="datosValidados.actividad" disabled />
+          </div>
+          <div class="input-group" *ngIf="datosValidados.estado">
+            <label>Estado del contribuyente</label>
+            <input type="text" [value]="datosValidados.estado" disabled />
+          </div>
+          <div class="input-group">
+            <label>Correo electrónico *</label>
+            <input type="email" [value]="datosValidados.correo" disabled />
+          </div>
+          <div class="input-group">
+            <label>Teléfono</label>
+            <input type="tel" [value]="datosValidados.telefono" disabled />
+          </div>
         </div>
       </div>
 
-      <div class="inputs">
-        <div class="input-group">
-          <label>Correo electrónico *</label>
-          <input type="email" placeholder="Correo electrónico *">
+      <!-- Sección EXTRANJERO -->
+      <div *ngIf="tipoDonante === 'extranjero'">
+        <div class="anonimo-checkbox">
+          <input type="checkbox" />
+          <label>Donar anónimamente</label>
         </div>
-        <div class="input-group">
-          <label>Teléfono</label>
-          <input type="tel" placeholder="Teléfono">
-        </div>
-      </div>
 
-      <div class="anonimo-checkbox">
-        <input type="checkbox"> <label>Donar en homenaje a alguien especial</label>
+        <div class="inputs">
+          <div class="input-group">
+            <label>Nombre *</label>
+            <input type="text" placeholder="Nombre *" />
+          </div>
+          <div class="input-group">
+            <label>Apellido *</label>
+            <input type="text" placeholder="Apellido *" />
+          </div>
+        </div>
+
+        <div class="inputs">
+          <div class="input-group">
+            <label>Correo electrónico *</label>
+            <input type="email" placeholder="Correo electrónico *" />
+          </div>
+          <div class="input-group">
+            <label>Teléfono</label>
+            <input type="tel" placeholder="Teléfono" />
+          </div>
+        </div>
       </div>
-      <p>Te enviaremos un recibo de donación a tu correo electrónico.</p>
     </div>
-
-    <h3>Método de pago</h3>
-    <div class="payment-methods">
-      <button class="active">Tarjeta de crédito/débito</button>
-      <button>Código QR Banco Pichincha</button>
-      <button>PayPhone</button>
-      <button>PayPal</button>
-      <button>Transferencia bancaria</button>
-      <button>Billeteras móviles</button>
-    </div>
-    <div class="inputs">
-      <div class="input-group">
-        <label>Número de tarjeta</label>
-        <input type="text" placeholder="Número de tarjeta">
-      </div>
-      <div class="input-group">
-        <label>Fecha de expiración (MM/AA)</label>
-        <input type="text" placeholder="Fecha de expiración (MM/AA)">
-      </div>
-      <div class="input-group">
-        <label>CVV</label>
-        <input type="text" placeholder="CVV">
-      </div>
-      <div class="input-group">
-        <label>Nombre en la tarjeta</label>
-        <input type="text" placeholder="Nombre en la tarjeta">
-      </div>
-    </div>
-
-    <button class="btn-orange">Donar ahora</button>
-    <small>Al realizar tu donación, aceptas nuestros términos y políticas de privacidad</small>
   </div>
-
-  
 </div>
