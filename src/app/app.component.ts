@@ -9,6 +9,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { HeaderComponent } from './components/header/header.component';
 import { FormComponent } from "./components/form/form.component";
 import { InformativoComponent } from "./components/informativo/informativo.component";
+import { AyudaComponent } from "./components/ayuda/ayuda.component";
 
 @Component({
   selector: 'app-root',
@@ -23,7 +24,8 @@ import { InformativoComponent } from "./components/informativo/informativo.compo
     FooterComponent,
     HeaderComponent,
     FormComponent,
-    InformativoComponent
+    InformativoComponent,
+    AyudaComponent
 ],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
