@@ -10,7 +10,9 @@ import { HeaderComponent } from './components/header/header.component';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet,
+  standalone: true,
+  imports: [
+    RouterOutlet,
     CommonModule,
     ProductosListComponent,
     DonacionCarritoComponent,
@@ -19,7 +21,6 @@ import { HeaderComponent } from './components/header/header.component';
     FooterComponent,
     HeaderComponent
   ],
-  standalone: true,
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
