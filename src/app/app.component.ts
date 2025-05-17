@@ -1,37 +1,25 @@
 import { Component } from '@angular/core';
-<<<<<<< HEAD
 import { RouterOutlet } from '@angular/router';
-import { FooterComponent } from './footer/footer.component';
-import { HeaderComponent } from './header/header.component';
-
-@Component({
-  selector: 'app-root',
-  imports: [RouterOutlet,
-    FooterComponent,
-    HeaderComponent
-=======
 import { CommonModule } from '@angular/common';
 import { ProductosListComponent } from './components/productos-list/productos-list.component';
 import { DonacionCarritoComponent } from './components/donacion-carrito/donacion-carrito.component';
 import { InfoDonanteComponent } from './components/info-donante/info-donante.component';
 import { ResumenCampanaComponent } from './components/resumen-campana/resumen-campana.component';
-import { FooterComponent } from './footer/footer.component';
+import { FooterComponent } from './components/footer/footer.component';
+import { HeaderComponent } from './components/header/header.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
   imports: [
+    RouterOutlet,
     CommonModule,
     ProductosListComponent,
     DonacionCarritoComponent,
     InfoDonanteComponent,
-<<<<<<< HEAD
     ResumenCampanaComponent,
-    FooterComponent
-=======
-    ResumenCampanaComponent
->>>>>>> 4236f75f3718f51872fd9e91d77eec973c61080d
->>>>>>> eefe7cd56ff42dddcc1761d7b0a8cb5365fab058
+    FooterComponent,
+    HeaderComponent
   ],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
