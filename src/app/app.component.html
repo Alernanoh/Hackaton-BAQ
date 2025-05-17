@@ -1,11 +1,14 @@
 <app-header />
 
+<<<<<<< HEAD
 <router-outlet></router-outlet>
 
 <div class="container">
+=======
   <div class="col">
     <app-ayuda></app-ayuda>
   </div>
+>>>>>>> 223b2737dcf583276cb6c977897497d78b50df2f
   <h1>🎁 Dona con propósito</h1>
 
   <!-- Ayuda al inicio (encima de la grid si debe ir arriba) -->
@@ -20,6 +23,7 @@
       </app-productos-list>
 
       <app-resumen-campana></app-resumen-campana>
+<<<<<<< HEAD
 
       <app-form></app-form>
     </div>
@@ -31,6 +35,7 @@
         (quitarProducto)="quitarDelCarrito($event)">
       </app-donacion-carrito>
 
+=======
 
     </div>
 
@@ -39,6 +44,7 @@
     <div class="col">
       <app-donacion-carrito [carrito]="carrito" (quitarProducto)="quitarDelCarrito($event)">
       </app-donacion-carrito>
+      <app-info-donante></app-info-donante>
 
     </div>
     <div class="col">
@@ -46,6 +52,7 @@
     </div>
 
     <div class="col">
+>>>>>>> 223b2737dcf583276cb6c977897497d78b50df2f
       <app-informativo></app-informativo>
     </div>
   </div>
