@@ -1,3 +1,21 @@
 <app-header />
 <router-outlet></router-outlet>
 <app-footer />
+<div class="container">
+  <h1>🎁 Dona con propósito</h1>
+
+  <div class="grid">
+    <div class="col">
+      <app-productos-list [productos]="productos" (agregarProducto)="agregarAlCarrito($event)">
+      </app-productos-list>
+
+      <app-resumen-campana></app-resumen-campana>
+    </div>
+
+    <div class="col">
+      <app-donacion-carrito [carrito]="carrito"></app-donacion-carrito>
+      <app-info-donante></app-info-donante>
+    </div>
+  </div>
+</div>
+<router-outlet></router-outlet>

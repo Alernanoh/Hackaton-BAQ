@@ -1,0 +1,19 @@
+<div class="carrito card">
+  <h4>Tu donación</h4>
+  <div *ngFor="let item of carrito">
+    <div class="item-carrito">
+      <img [src]="item.imagen" alt="{{ item.nombre }}" />
+      <div class="info">
+        <strong>{{ item.nombre }}</strong>
+        <p>Cant: {{ item.cantidad }}</p>
+        <p>\${{ item.precio.toFixed(2) }}</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="resumen">
+    <p>Subtotal: <strong>\${{ subtotal }}</strong></p>
+    <p>Cargos de pasarela: <strong>\${{ cargosPasarela }}</strong></p>
+    <p>Total: <strong>\${{ total }}</strong></p>
+  </div>
+</div>

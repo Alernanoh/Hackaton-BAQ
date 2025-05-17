@@ -1,0 +1,19 @@
+<form class="info-donante card" [formGroup]="formulario">
+  <label class="anonimo-checkbox">
+    <input type="checkbox" formControlName="anonimo" />
+    Donar anónimamente
+  </label>
+
+  <div class="inputs" *ngIf="!formulario.get('anonimo')?.value">
+    <div class="input-group">
+      <label for="nombre">Nombre *</label>
+      <input id="nombre" type="text" placeholder="Nombre" formControlName="nombre" />
+    </div>
+    <div class="input-group">
+      <label for="apellido">Apellido *</label>
+      <input id="apellido" type="text" placeholder="Apellido" formControlName="apellido" />
+    </div>
+  </div>
+
+  <button class="btn-orange" type="button" (click)="enviar()">Continuar</button>
+</form>
