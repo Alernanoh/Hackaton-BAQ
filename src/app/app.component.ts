@@ -4,6 +4,7 @@ import { ProductosListComponent } from './components/productos-list/productos-li
 import { DonacionCarritoComponent } from './components/donacion-carrito/donacion-carrito.component';
 import { InfoDonanteComponent } from './components/info-donante/info-donante.component';
 import { ResumenCampanaComponent } from './components/resumen-campana/resumen-campana.component';
+import { FooterComponent } from './footer/footer.component';
 
 @Component({
   selector: 'app-root',
@@ -13,7 +14,8 @@ import { ResumenCampanaComponent } from './components/resumen-campana/resumen-ca
     ProductosListComponent,
     DonacionCarritoComponent,
     InfoDonanteComponent,
-    ResumenCampanaComponent
+    ResumenCampanaComponent,
+    FooterComponent
   ],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
@@ -26,7 +28,7 @@ export class AppComponent {
     {
       nombre: 'Kit de Alimentación Básico',
       descripcion: 'Proporciona alimentos para una semana',
-      imagen: 'assets/kit-alimentacion.png',
+      imagen: '/kit-alimentacion.png',
       precio: 7.75,
       obtenido: 1180,
       meta: 2000
@@ -34,7 +36,7 @@ export class AppComponent {
     {
       nombre: 'Kit de Higiene',
       descripcion: 'Incluye artículos básicos de aseo',
-      imagen: 'assets/kit-higiene.png',
+      imagen: '/kit-higiene.png',
       precio: 6.54,
       obtenido: 835,
       meta: 2000
@@ -42,7 +44,7 @@ export class AppComponent {
     {
       nombre: 'Botiquín de primeros auxilios',
       descripcion: 'Para emergencias básicas',
-      imagen: 'assets/botiquin.png',
+      imagen: '/botiquin.png',
       precio: 8.90,
       obtenido: 430,
       meta: 1000
@@ -55,6 +57,17 @@ export class AppComponent {
       itemExistente.cantidad++;
     } else {
       this.carrito.push({ ...producto, cantidad: 1 });
+    }
+  }
+
+  quitarDelCarrito(producto: any) {
+    const idx = this.carrito.findIndex(p => p.nombre === producto.nombre);
+    if (idx > -1) {
+      if (this.carrito[idx].cantidad > 1) {
+        this.carrito[idx].cantidad--;
+      } else {
+        this.carrito.splice(idx, 1);
+      }
     }
   }
 }

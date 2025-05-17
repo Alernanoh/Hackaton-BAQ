@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -10,6 +10,7 @@ import { CommonModule } from '@angular/common';
 })
 export class DonacionCarritoComponent {
   @Input() carrito: any[] = [];
+  @Output() quitarProducto = new EventEmitter<any>();
 
   get subtotal(): number {
     return this.carrito.reduce((total, item) => total + item.precio * item.cantidad, 0);

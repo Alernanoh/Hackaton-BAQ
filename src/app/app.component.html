@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <div class="container">
   <h1>🎁 Dona con propósito</h1>
 
@@ -15,11 +14,12 @@
 
     <!-- Columna derecha: Carrito y datos del donante -->
     <div class="col">
-      <app-donacion-carrito [carrito]="carrito"></app-donacion-carrito>
+      <app-donacion-carrito
+        [carrito]="carrito"
+        (quitarProducto)="quitarDelCarrito($event)">
+      </app-donacion-carrito>
       <app-info-donante></app-info-donante>
     </div>
   </div>
 </div>
-=======
-<router-outlet></router-outlet>
->>>>>>> 6c9f77f6a8ba571eb8304290ec378b58894f5f69
+<app-footer></app-footer>
