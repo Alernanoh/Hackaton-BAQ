@@ -1,13 +1,8 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { ProductosListComponent } from './components/productos-list/productos-list.component';
-import { DonacionCarritoComponent } from './components/donacion-carrito/donacion-carrito.component';
-import { ResumenCampanaComponent } from './components/resumen-campana/resumen-campana.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { HeaderComponent } from './components/header/header.component';
-import { FormComponent } from "./components/form/form.component";
-import { InformativoComponent } from "./components/informativo/informativo.component";
 import { AyudaComponent } from "./components/ayuda/ayuda.component";
 import { FormsModule } from '@angular/forms';
 
@@ -17,13 +12,8 @@ import { FormsModule } from '@angular/forms';
   imports: [
     RouterOutlet,
     CommonModule,
-    ProductosListComponent,
-    DonacionCarritoComponent,
-    ResumenCampanaComponent,
     FooterComponent,
     HeaderComponent,
-    FormComponent,
-    InformativoComponent,
     AyudaComponent,
     FormsModule
   ],
