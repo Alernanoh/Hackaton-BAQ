@@ -38,3 +38,32 @@
 .btn-orange:hover {
   background-color: #e0891a;
 }
+
+/* Fondo naranja */
+.bg-orange {
+  background-color: #d2691e;
+}
+
+/* Texto blanco */
+.text-white {
+  color: white;
+}
+
+/* Accordion personalizado */
+.accordion-item {
+  border: 1px solid black;
+}
+
+.accordion-button {
+  font-weight: bold;
+  color: white;
+  background-color: #d2691e;
+  border-color: black;
+}
+
+.accordion-button:hover {
+  background-color: #b85f00;
+}
+
+.accordion-button.collapsed::after {
+  background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23fff'><path fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0
