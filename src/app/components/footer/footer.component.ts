@@ -1,12 +1,20 @@
 import { Component } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { ScrollService } from '../../services/scroll.service';
 
 @Component({
   selector: 'app-footer',
-  imports: [RouterLink],
-  templateUrl: '../footer/footer.component.html',
+  templateUrl: './footer.component.html',
   styleUrl: './footer.component.css'
 })
 export class FooterComponent {
+  constructor(private scrollService: ScrollService) {}
 
+  irADonar(event: MouseEvent) {
+    event.preventDefault();
+    this.scrollService.scrollToSection('proyecto');
+  }
+  irAVoluntariado(event: MouseEvent) {
+    event.preventDefault();
+    this.scrollService.scrollToSection('actualizaciones');
+  }
 }

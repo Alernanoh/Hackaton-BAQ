@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { ProductosListComponent } from './components/productos-list/productos-list.component';
@@ -9,6 +9,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { FormComponent } from "./components/form/form.component";
 import { InformativoComponent } from "./components/informativo/informativo.component";
 import { AyudaComponent } from "./components/ayuda/ayuda.component";
+import { ScrollService } from './services/scroll.service';
 
 @Component({
   selector: 'app-root',
@@ -28,7 +29,8 @@ import { AyudaComponent } from "./components/ayuda/ayuda.component";
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
+  @ViewChild(AyudaComponent) ayudaComponent!: AyudaComponent;
   title = 'hackaton';
   carrito: any[] = [];
 
@@ -58,6 +60,17 @@ export class AppComponent {
       meta: 1000
     }
   ];
+  seccionActiva: string | undefined;
+
+  constructor(private scrollService: ScrollService) {}
+
+  ngOnInit() {
+    this.scrollService.scrollToSection$.subscribe((section: string) => {
+      if (this.ayudaComponent) {
+        this.ayudaComponent.cambiarSeccion(section);
+      }
+    });
+  }
 
   agregarAlCarrito(producto: any) {
     const itemExistente = this.carrito.find(p => p.nombre === producto.nombre);
@@ -77,5 +90,33 @@ export class AppComponent {
         this.carrito.splice(idx, 1);
       }
     }
+  }
+
+  irADonar(event: Event) {
+    event.preventDefault();
+    if (this.ayudaComponent) {
+      this.ayudaComponent.cambiarSeccion('proyecto');
+    }
+  }
+
+  irAVoluntariado(event: Event) {
+    event.preventDefault();
+    if (this.ayudaComponent) {
+      this.ayudaComponent.cambiarSeccion('actualizaciones');
+    }
+  }
+
+  cambiarSeccion(seccion: string) {
+    this.seccionActiva = seccion;
+    setTimeout(() => {
+      let id = '';
+      if (seccion === 'productos') id = 'contenido-productos';
+      if (seccion === 'proyecto') id = 'contenido-donardinero';
+      if (seccion === 'actualizaciones') id = 'contenido-voluntariado';
+      const el = document.getElementById(id);
+      if (el) {
+        el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }, 50);
   }
 }
