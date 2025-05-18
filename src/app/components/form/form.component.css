@@ -212,3 +212,37 @@ small {
   display: flex;
   justify-content: center;
 }
+.input-group {
+  margin-bottom: 1rem;
+}
+
+.helper-text {
+  font-size: 0.85rem;
+  color: #999;
+  margin-top: 0.25rem;
+  display: block;
+}
+
+input.warning {
+  border-color: orange;
+}
+
+.form-actions {
+  margin-top: 1.5rem;
+  text-align: right;
+}
+
+.btn-gray {
+  background-color: #ccc;
+  color: #333;
+  border: none;
+  padding: 0.6rem 1.2rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.btn-gray:hover {
+  background-color: #bbb;
+}
