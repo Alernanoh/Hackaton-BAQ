@@ -1,13 +1,28 @@
 <div class="donation-container">
   <div class="form-section">
-    <h2>¿Cuánto quieres donar?</h2>
-    <div class="amount-options">
-      <button>$12</button>
-      <button class="active">$22</button>
-      <button>$36</button>
-      <button>$100</button>
-    </div>
-    <input type="number" placeholder="$" class="amount-input" />
+<h2>¿Cuánto quieres donar?</h2>
+<div class="amount-options">
+  <button>$12</button>
+  <button class="active">$22</button>
+  <button>$36</button>
+  <button>$100</button>
+</div>
+
+<input type="number" placeholder="$ Monto personalizado" class="amount-input" />
+
+<!-- NUEVA SECCIÓN DE BOTONES DE PAGO -->
+<div class="payment-shortcuts">
+  <button class="btn-payphone" (click)="pagarConPayPhone()">PayPhone</button>
+  <button class="btn-paypal" (click)="mostrarPaypal()">PayPal</button>
+</div>
+
+<!-- CONTENEDOR PAYPAL -->
+<div *ngIf="mostrarBotonPaypal" class="paypal-button-container">
+  <div #paypalContainer></div>
+</div>
+
+
+
 
     <div class="info-donante">
       <h3>Información del donante</h3>
