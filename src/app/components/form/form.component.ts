@@ -23,11 +23,11 @@ export class FormComponent implements AfterViewInit {
   showAmountError: boolean = false;
   donacionAnonima: boolean = false;
 
-
   numeroIdentificacion: string = '';
   validado = false;
   cargando = false;
   mostrarBotonPaypal = false;
+  paypalRendered = false;
 
   datosValidados = {
     nombre: '',
@@ -41,7 +41,7 @@ export class FormComponent implements AfterViewInit {
   constructor(private http: HttpClient) { }
 
   ngAfterViewInit(): void {
-    // se utiliza setTimeout en mostrarPaypal()
+    // Intencionalmente vacío
   }
 
   cambiarTipoDonante(tipo: 'extranjero' | 'ecuatoriano') {
@@ -66,8 +66,8 @@ export class FormComponent implements AfterViewInit {
   }
 
   pagarConPayPhone() {
-    const monto = 2200; // En centavos (22.00)
-    const numero = '0987654321'; // Teléfono simulado
+    const monto = 2200;
+    const numero = '0987654321';
 
     this.http.post('http://localhost:3000/api/payphone', {
       amount: monto,
@@ -84,68 +84,89 @@ export class FormComponent implements AfterViewInit {
     });
   }
 
-mostrarPaypal() {
-  const monto = this.donationAmount;
-  if (!monto || monto < 2) {
-    alert('Por favor ingresa un monto válido (mínimo $2)');
-    return;
+  mostrarPaypal() {
+    const monto = this.donationAmount;
+    if (!monto || monto < 2 || this.paypalRendered) return;
+
+    this.mostrarBotonPaypal = true;
+
+    setTimeout(() => {
+      // Limpia el contenedor antes de renderizar el botón
+      if (this.paypalContainer && this.paypalContainer.nativeElement) {
+        this.paypalContainer.nativeElement.innerHTML = '';
+      }
+
+      paypal.Buttons({
+        createOrder: (data: any, actions: any) => {
+          return actions.order.create({
+            purchase_units: [{
+              amount: {
+                value: monto.toFixed(2)
+              }
+            }]
+          });
+        },
+        onApprove: async (data: any, actions: any) => {
+          const order = await actions.order.capture();
+          console.log('✅ Pago PayPal exitoso:', order);
+          alert('¡Gracias por tu donación vía PayPal!');
+        },
+        onError: (err: any) => {
+          console.error('❌ Error con PayPal:', err);
+          alert('Ocurrió un error con PayPal.');
+        }
+      }).render(this.paypalContainer.nativeElement);
+      this.paypalRendered = true;
+    }, 100);
   }
 
-  this.mostrarBotonPaypal = true;
-
-  setTimeout(() => {
-    paypal.Buttons({
-      createOrder: (data: any, actions: any) => {
-        return actions.order.create({
-          purchase_units: [{
-            amount: {
-              value: monto.toFixed(2) // Usa el monto dinámico formateado a dos decimales
-            }
-          }]
-        });
-      },
-      onApprove: async (data: any, actions: any) => {
-        const order = await actions.order.capture();
-        console.log('✅ Pago PayPal exitoso:', order);
-        alert('¡Gracias por tu donación vía PayPal!');
-      },
-      onError: (err: any) => {
-        console.error('❌ Error con PayPal:', err);
-        alert('Ocurrió un error con PayPal.');
-      }
-    }).render(this.paypalContainer.nativeElement);
-  }, 100);
-}
-
-
-   selectAmount(amount: number): void {
+  selectAmount(amount: number): void {
     this.selectedAmount = amount;
     this.customAmount = amount;
-    this.showAmountError = false; 
+    this.showAmountError = false;
+    // Ya NO llamamos a mostrarPaypal aquí
   }
 
   validateAmount(): void {
     if (this.customAmount !== null && this.customAmount < 2) {
       this.showAmountError = true;
-      this.customAmount = null; 
+      this.customAmount = null;
+      this.mostrarBotonPaypal = false;
+      this.paypalRendered = false;
     } else {
       this.showAmountError = false;
+      this.paypalRendered = false;
+      this.mostrarPaypal();
     }
   }
-
-  
 
   onCustomAmountInput(): void {
     this.selectedAmount = null;
-    
-    // Validar que el monto sea mínimo 2
     if (this.customAmount && this.customAmount < 2) {
       this.customAmount = 2;
     }
+    this.paypalRendered = false;
+    this.mostrarPaypal();
+  }
+
+  confirmarMonto(): void {
+    if (this.customAmount === null || this.customAmount < 2) {
+      this.showAmountError = true;
+      this.mostrarBotonPaypal = false;
+      this.paypalRendered = false;
+      return;
+    }
+    this.showAmountError = false;
+    this.selectedAmount = null; // Para que siempre tome el personalizado
+    this.paypalRendered = false;
+    this.mostrarPaypal();
   }
 
   get donationAmount(): number | null {
-    return this.selectedAmount || this.customAmount;
+    if (this.customAmount && this.customAmount >= 2) {
+      return this.customAmount;
+    }
+    return this.selectedAmount;
   }
 
   validarIdentificacion() {
@@ -163,7 +184,6 @@ mostrarPaypal() {
     }
 
     this.cargando = true;
-
     const url = `http://localhost:3000/api/cedula?tipo=${tipo}&identificacion=${valor}`;
 
     this.http.get<any>(url).subscribe({
@@ -194,8 +214,6 @@ mostrarPaypal() {
 
         this.cargando = false;
       },
-
-      
       error: (err) => {
         this.validado = false;
         this.cargando = false;
