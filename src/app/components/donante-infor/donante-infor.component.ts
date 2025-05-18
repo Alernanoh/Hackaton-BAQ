@@ -1,17 +1,19 @@
 import { Component, Input } from '@angular/core';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-donante-infor',
-  imports: [],
+  standalone: true,
+  imports: [CommonModule],
   templateUrl: './donante-infor.component.html',
   styleUrl: './donante-infor.component.css'
 })
 export class DonanteInforComponent {
-
-    @Input() showImpactSection: boolean = true;
+  @Input() showImpactSection: boolean = true;
   @Input() currentAmount: number = 86245.30;
   @Input() goalAmount: number = 168347.46;
-  
+  @Input() donacionReciente: number = 0;
+
   get progress(): number {
     return Math.min(100, (this.currentAmount / this.goalAmount) * 100);
   }
@@ -32,5 +34,4 @@ export class DonanteInforComponent {
       { amount: 100, description: 'asegura atención completa durante un mes' }
     ]
   };
-
 }

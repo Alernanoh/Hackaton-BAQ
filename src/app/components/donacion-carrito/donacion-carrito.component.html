@@ -7,7 +7,11 @@
       <img [src]="item.imagen" alt="{{ item.nombre }}" />
       <div class="info">
         <strong>{{ item.nombre }}</strong>
-        <p style="margin: 0;">Cant: {{ item.cantidad }}</p>
+        <div class="cantidad-selector">
+          <button (click)="cambiarCantidad(item, -1)" [disabled]="item.cantidad <= 1">-</button>
+          <input type="number" [value]="item.cantidad" min="1" readonly>
+          <button (click)="cambiarCantidad(item, 1)">+</button>
+        </div>
         <p style="margin: 0;">\${{ item.precio.toFixed(2) }}</p>
         <div class="barra">
           <div class="progreso" [style.width.%]="(item.obtenido / item.meta) * 100"></div>
@@ -38,7 +42,24 @@
   <div class="modal-pago" *ngIf="mostrarModalPago">
     <div class="modal-pago-content">
       <button class="modal-close" (click)="cerrarPagoCarrito()">×</button>
-      <app-form [montoCarrito]="total" [modoCarrito]="true"></app-form>
+      <app-form
+        [montoCarrito]="total"
+        [modoCarrito]="true"
+        (donacionExitosa)="onDonacionExitosa($event)">
+      </app-form>
+    </div>
+  </div>
+
+  <!-- Modal de agradecimiento -->
+  <div class="modal-pago" *ngIf="agradecimientoVisible">
+    <div class="modal-pago-content" style="text-align:center; max-width:350px;">
+      <div style="font-size:2.5rem; color:#43a047; margin-bottom:0.5rem;">🎉</div>
+      <h2 style="color:#f7941d; margin-bottom:0.5rem;">¡Gracias por tu donación!</h2>
+      <p style="margin-bottom:1.2rem;">
+        Tu aporte de <strong>${{ donacionRecienteMonto | number:'1.2-2' }}</strong> ayudará a alimentar esperanza.<br>
+        ¡Juntos hacemos la diferencia!
+      </p>
+      <button class="btn-orange" (click)="cerrarAgradecimiento()">Aceptar</button>
     </div>
   </div>
 </div>

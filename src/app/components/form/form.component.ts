@@ -1,4 +1,4 @@
-import { Component, ElementRef, ViewChild, AfterViewInit, Input } from '@angular/core';
+import { Component, ElementRef, ViewChild, AfterViewInit, Input, Output, EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
@@ -17,6 +17,7 @@ export class FormComponent implements AfterViewInit {
 
   @Input() montoCarrito: number | null = null;
   @Input() modoCarrito: boolean = false;
+  @Output() donacionExitosa = new EventEmitter<number>();
 
   tipoDonante: 'extranjero' | 'ecuatoriano' = 'extranjero';
   tipoIdentificacion: 'cedula' | 'ruc' = 'cedula';
@@ -118,8 +119,7 @@ export class FormComponent implements AfterViewInit {
         },
         onApprove: async (data: any, actions: any) => {
           const order = await actions.order.capture();
-          console.log('✅ Pago PayPal exitoso:', order);
-          alert('¡Gracias por tu donación vía PayPal!');
+          this.donacionExitosa.emit(this.donationAmount ?? 0);
         },
         onError: (err: any) => {
           console.error('❌ Error con PayPal:', err);

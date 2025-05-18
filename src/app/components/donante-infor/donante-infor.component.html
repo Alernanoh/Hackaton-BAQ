@@ -32,8 +32,13 @@
       <div class="progreso" [style.width]="progress + '%'"></div>
     </div>
     <div class="meta-recaudo">
-      <span>${{ currentAmount }} recaudados</span>
-      <span>Meta: ${{ goalAmount }}</span>
+      <span>
+        ${{ currentAmount | number:'1.2-2' }} recaudados
+        <span *ngIf="donacionReciente > 0" class="donacion-reciente">
+          +${{ donacionReciente | number:'1.2-2' }} 🎉
+        </span>
+      </span>
+      <span>Meta: ${{ goalAmount | number:'1.2-2' }}</span>
     </div>
   </div>
 </div>
