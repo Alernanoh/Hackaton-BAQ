@@ -1,24 +1,27 @@
 .container {
   height: 100%;
-  
-  background-image: url('../../public/assets/melon.jpg'); /* Asegúrate de la ruta */
+
+  background-image: url('../../public/assets/melon.jpg');
+  /* Asegúrate de la ruta */
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;
   background-attachment: fixed;
   font-family: Arial, sans-serif;
-  background-color: rgba(0, 0, 0, 0.4); /* Fondo oscuro semitransparente encima de la imagen */
-  background-blend-mode: darken; /* Mezcla el color oscuro con la imagen */
-  
+  background-color: rgba(0, 0, 0, 0.4);
+  /* Fondo oscuro semitransparente encima de la imagen */
+  background-blend-mode: darken;
+  /* Mezcla el color oscuro con la imagen */
+
   border-radius: 8px;
   max-width: 1200px;
   margin: 2rem auto;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-     border-radius: 0;
-     
+  border-radius: 0;
+
   box-shadow: none;
 
-  
+
 }
 
 
@@ -42,7 +45,38 @@
     grid-template-columns: 1fr;
     gap: 1rem;
   }
+
   .container {
     padding: 1rem;
   }
+}
+
+.titulo-naranja {
+  background-color: #f7941d;
+  color: white;
+  padding: 0.6rem 1rem;
+  border-radius: 0;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  width: 100vw;
+  left: 50%;
+  transform: translateX(-50%);
+  position: relative;
+  z-index: 1;
+  margin-top: 0;
+}
+
+.titulo-naranja h1 {
+  font-size: 1.25rem;
+  font-weight: bold;
+  line-height: 1.4;
+  margin: 0;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.contenido-principal {
+  margin-top: 2rem;
+}
+
+body {
+  padding-top: 70px;
 }
