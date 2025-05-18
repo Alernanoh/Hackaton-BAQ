@@ -5,6 +5,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { HeaderComponent } from './components/header/header.component';
 import { AyudaComponent } from "./components/ayuda/ayuda.component";
 import { ScrollService } from './services/scroll.service';
+import { ModalComponent } from './components/modal/modal.component';
 
 @Component({
   selector: 'app-root',
@@ -15,6 +16,7 @@ import { ScrollService } from './services/scroll.service';
     FooterComponent,
     HeaderComponent,
     AyudaComponent,
+    ModalComponent,
   ],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
