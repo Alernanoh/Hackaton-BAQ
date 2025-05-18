@@ -5,6 +5,13 @@
   width: 100%;
   box-sizing: border-box;
   overflow-x: hidden;
+  
+  background-image: url('https://img.freepik.com/vector-premium/ilustracion-vectorial-chica-feliz-pie-lluvia-frutas-verduras_1108340-482.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-attachment: fixed;
+  font-family: Arial, sans-serif;
 }
 
 .grid {
