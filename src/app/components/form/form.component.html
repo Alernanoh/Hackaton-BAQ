@@ -1,22 +1,35 @@
 <div class="donation-container">
   <div class="form-section">
-<h2>¿Cuánto quieres donar?</h2>
-<div class="amount-options">
-  <button>$12</button>
-  <button class="active">$22</button>
-  <button>$36</button>
-  <button>$100</button>
-</div>
+    <h2>¿Cuánto quieres donar?</h2>
+    
+    <div class="amount-options">
+      <button (click)="selectAmount(12)" [class.active]="selectedAmount === 12">$12</button>
+      <button (click)="selectAmount(22)" [class.active]="selectedAmount === 22">$22</button>
+      <button (click)="selectAmount(36)" [class.active]="selectedAmount === 36">$36</button>
+      <button (click)="selectAmount(100)" [class.active]="selectedAmount === 100">$100</button>
+    </div>
 
-<input type="number" placeholder="$ Monto personalizado" class="amount-input" />
-
+    <div class="amount-input-container">
+      <input 
+        type="number" 
+        [(ngModel)]="customAmount" 
+        (blur)="validateAmount()"
+        placeholder="$ Monto personalizado" 
+        class="amount-input" 
+        [class.error]="showAmountError"
+        min="2"
+      />
+      <div *ngIf="showAmountError" class="error-message">
+        El monto mínimo de donación es $2
+      </div>
+      
 <!-- NUEVA SECCIÓN DE BOTONES DE PAGO -->
 <div class="payment-shortcuts">
   <button class="btn-payphone" (click)="pagarConPayPhone()">PayPhone</button>
   <button class="btn-paypal" (click)="mostrarPaypal()">PayPal</button>
 </div>
 
-<!-- CONTENEDOR PAYPAL -->
+<!-- CONTENEDOR PAYPAL -->  
 <div *ngIf="mostrarBotonPaypal" class="paypal-button-container">
   <div #paypalContainer></div>
 </div>
