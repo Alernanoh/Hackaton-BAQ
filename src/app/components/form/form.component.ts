@@ -27,7 +27,7 @@ export class FormComponent {
     estado: ''
   };
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   cambiarTipoDonante(tipo: 'extranjero' | 'ecuatoriano') {
     this.tipoDonante = tipo;
