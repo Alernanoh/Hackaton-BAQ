@@ -3,10 +3,14 @@
 
     <!-- Información del donante -->
     <div class="info-donante">
-      <h3>Información del donante</h3>
-      <div class="anonimo-checkbox">
-        <input type="checkbox" [(ngModel)]="donacionAnonima" />
-        <label>Donar anónimamente</label>
+       <div class="anonimo-switch">
+        <label class="switch">
+          <input type="checkbox" [(ngModel)]="donacionAnonima" />
+          <span class="slider"></span>
+        </label>
+        <span class="anonimo-label" [class.active]="donacionAnonima">
+          Donar anónimamente
+        </span>
       </div>
 
       <ng-container *ngIf="!donacionAnonima">
@@ -23,13 +27,17 @@
         <div *ngIf="tipoDonante === 'ecuatoriano'" class="card-identificacion">
           <div class="input-group">
             <label>Tipo de identificación</label>
-            <div class="radio-group">
-              <label>
-                <input type="radio" [(ngModel)]="tipoIdentificacion" value="cedula" /> Cédula
+            <div class="toggle-identificacion">
+              <span [class.selected]="tipoIdentificacion === 'cedula'">Cédula</span>
+              <label class="switch-identificacion">
+                <input
+                  type="checkbox"
+                  [checked]="tipoIdentificacion === 'ruc'"
+                  (change)="tipoIdentificacion = tipoIdentificacion === 'cedula' ? 'ruc' : 'cedula'"
+                />
+                <span class="slider-identificacion"></span>
               </label>
-              <label>
-                <input type="radio" [(ngModel)]="tipoIdentificacion" value="ruc" /> RUC
-              </label>
+              <span [class.selected]="tipoIdentificacion === 'ruc'">RUC</span>
             </div>
           </div>
 
@@ -140,18 +148,18 @@
         </div>
       </ng-container>
 
-      <div *ngIf="donacionAnonima" class="anonimo-msg">
-        <p>Tu donación se realizará de manera anónima. ¡Gracias por tu generosidad! 💛</p>
-      </div>
-    </div>
+  <div *ngIf="donacionAnonima" class="anonimo-msg">
+  <p><em>Tu donación se realizará de manera anónima. ¡Gracias por tu apoyo!</em></p>
+</div>
+
 
     <!-- ¿Cuánto quieres donar? -->
     <div *ngIf="!modoCarrito">
       <h2>¿Cuánto quieres donar?</h2>
       <div class="amount-options">
-        <button (click)="selectAmount(12)" [class.active]="selectedAmount === 12">$12</button>
-        <button (click)="selectAmount(22)" [class.active]="selectedAmount === 22">$22</button>
-        <button (click)="selectAmount(36)" [class.active]="selectedAmount === 36">$36</button>
+        <button (click)="selectAmount(5)" [class.active]="selectedAmount === 5">$5</button>
+        <button (click)="selectAmount(10)" [class.active]="selectedAmount === 10">$10</button>
+        <button (click)="selectAmount(20)" [class.active]="selectedAmount === 20">$20</button>
         <button (click)="selectAmount(100)" [class.active]="selectedAmount === 100">$100</button>
       </div>
       <div class="amount-input-container" style="display: flex; gap: 0.5rem; align-items: center;">

@@ -240,6 +240,14 @@
   box-shadow: 0 4px 18px rgba(247, 148, 29, 0.22);
 }
 
+.btn-pagar-destacado:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  filter: grayscale(0.3);
+  pointer-events: none;
+  transition: opacity 0.2s;
+}
+
 .info-extra .box {
   background: #f9f5f0;
   border: 1px solid #f3e2c7;

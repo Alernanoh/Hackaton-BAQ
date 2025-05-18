@@ -28,10 +28,10 @@ export class DonanteInforComponent {
       'Alojamiento seguro y digno'
     ],
     impact: [
-      { amount: 12, description: 'alimenta a una persona durante 3 días' },
-      { amount: 22, description: 'proporciona medicamentos básicos para una semana' },
-      { amount: 36, description: 'cubre alimentación y atención médica durante una semana' },
-      { amount: 100, description: 'asegura atención completa durante un mes' }
+      { amount: 5, description: 'alimenta a una persona durante 3 días' },
+      { amount: 10, description: 'proporciona medicamentos básicos para una semana' },
+      { amount: 15, description: 'cubre alimentación y atención médica durante una semana' },
+      { amount: 20, description: 'asegura atención completa durante un mes' }
     ]
   };
 }

@@ -33,7 +33,12 @@
   </div>
 
   <!-- Botón de pagar alineado a la derecha -->
-  <button class="btn-pagar-destacado" (click)="abrirPagoCarrito()">Pagar</button>
+  <button 
+    class="btn-pagar-destacado" 
+    (click)="abrirPagoCarrito()" 
+    [disabled]="carrito.length === 0">
+    Pagar
+  </button>
 
   <!-- Modal de pago -->
   <div class="modal-pago" *ngIf="mostrarModalPago">
