@@ -52,18 +52,21 @@
       <app-informativo></app-informativo>
     </div>
   </div>
-
       </div>
-      
-      <div *ngIf="seccionActiva === 'proyecto'">
-  <div class="main-container">
-    
+
+
+<div *ngIf="seccionActiva === 'proyecto'">
+  <div class="main-container row g-4">
+
     <!-- Columna izquierda -->
-    <div class="col">
+    <div class="col-md-8">
       <app-form></app-form>
-      <app-donante-infor></app-donante-infor>
     </div>
 
+    <!-- Columna derecha -->
+    <div class="col-md-4">
+      <app-donante-infor></app-donante-infor>
+    </div>
 
   </div>
 </div>
@@ -71,4 +74,5 @@
       <div *ngIf="seccionActiva === 'actualizaciones'" >
       <app-form-voluntario/>
       </div>
+    </div>
     </div>

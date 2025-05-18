@@ -1,11 +1,7 @@
 import { Component } from '@angular/core';
 import { DonacionCarritoComponent } from '../donacion-carrito/donacion-carrito.component';
 import { CommonModule } from '@angular/common';
-import { AppComponent } from '../../app.component';
-import { DonaPropositoComponent } from '../dona-proposito/dona-proposito.component';
 import { ProductosListComponent } from '../productos-list/productos-list.component';
-import { ProductoCardComponent } from '../producto-card/producto-card.component';
-import { FormsModule } from '@angular/forms';
 import { FormComponent } from '../form/form.component';
 import { ResumenCampanaComponent } from '../resumen-campana/resumen-campana.component';
 import { InformativoComponent } from '../informativo/informativo.component';
@@ -17,7 +13,6 @@ import { DonanteInforComponent } from "../donante-infor/donante-infor.component"
   imports: [DonacionCarritoComponent,
     CommonModule,
     FormComponent,
-    DonaPropositoComponent,
     ResumenCampanaComponent,
     ProductosListComponent,
     InformativoComponent,
