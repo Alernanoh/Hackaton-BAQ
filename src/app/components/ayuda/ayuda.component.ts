@@ -7,12 +7,18 @@ import { ProductosListComponent } from '../productos-list/productos-list.compone
 import { ProductoCardComponent } from '../producto-card/producto-card.component';
 import { FormsModule } from '@angular/forms';
 import { FormComponent } from '../form/form.component';
+import { ResumenCampanaComponent } from '../resumen-campana/resumen-campana.component';
+import { InformativoComponent } from '../informativo/informativo.component';
 
 @Component({
   selector: 'app-ayuda',
   imports: [DonacionCarritoComponent,
     CommonModule,
-    FormComponent
+    FormComponent,
+    DonaPropositoComponent,
+    ResumenCampanaComponent,
+    ProductosListComponent,
+    InformativoComponent
   ],
   templateUrl: './ayuda.component.html',
   styleUrl: './ayuda.component.css'

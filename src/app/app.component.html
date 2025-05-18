@@ -8,29 +8,6 @@
   <!-- Ayuda al inicio (encima de la grid si debe ir arriba) -->
   <app-ayuda></app-ayuda>
 
-  <div class="grid">
-    <!-- COLUMNA IZQUIERDA -->
-    <div class="col">
-      <app-productos-list
-        [productos]="productos"
-        (agregarProducto)="agregarAlCarrito($event)">
-      </app-productos-list>
-
-      <app-resumen-campana></app-resumen-campana>
-
-      <app-form></app-form>
-    </div>
-
-    <!-- COLUMNA DERECHA -->
-    <div class="col">
-      <app-donacion-carrito
-        [carrito]="carrito"
-        (quitarProducto)="quitarDelCarrito($event)">
-      </app-donacion-carrito>
-
-      <app-informativo></app-informativo>
-    </div>
-  </div>
 </div>
 
 <app-footer />
