@@ -1,0 +1,26 @@
+<div class="donante-info-container">
+  <div class="cause-header">
+    <h1>{{ causeData.title }}</h1>
+    <p class="beneficiaries">- {{ causeData.beneficiaries }}</p>
+  </div>
+
+  <div class="cause-description">
+    <h2>Sobre esta causa</h2>
+    <p>{{ causeData.description }}</p>
+    
+    <ul class="benefits-list">
+      <li *ngFor="let benefit of causeData.benefits">
+        <span class="check-icon">✓</span> {{ benefit }}
+      </li>
+    </ul>
+  </div>
+
+  <div *ngIf="showImpactSection" class="impact-section">
+    <h2>El impacto de tu donación</h2>
+    <ul class="impact-list">
+      <li *ngFor="let item of causeData.impact">
+        <span class="check-icon">✓</span> ${{ item.amount }} {{ item.description }}
+      </li>
+    </ul>
+  </div>
+</div>
