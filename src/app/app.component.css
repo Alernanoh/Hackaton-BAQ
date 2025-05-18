@@ -1,18 +1,12 @@
 .container {
   height: 100%;
-  margin: 0;
-  padding: 2rem;
+  
   background-image: url('../../public/assets/melon.jpg'); /* Asegúrate de la ruta */
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;
   background-attachment: fixed;
   font-family: Arial, sans-serif;
-
-  /* Quita esto, porque opaca TODO el contenido (no solo la imagen) */
-  /* background-color: rgba(255, 255, 255, 0.9); */
-
-  /* ✅ Esta línea aplica opacidad solo a la imagen de fondo */
   background-color: rgba(0, 0, 0, 0.4); /* Fondo oscuro semitransparente encima de la imagen */
   background-blend-mode: darken; /* Mezcla el color oscuro con la imagen */
   
@@ -20,7 +14,11 @@
   max-width: 1200px;
   margin: 2rem auto;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  overflow-x: hidden;
+     border-radius: 0;
+     
+  box-shadow: none;
+
+  
 }
 
 
