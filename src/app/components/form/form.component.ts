@@ -17,6 +17,10 @@ export class FormComponent implements AfterViewInit {
 
   tipoDonante: 'extranjero' | 'ecuatoriano' = 'extranjero';
   tipoIdentificacion: 'cedula' | 'ruc' = 'cedula';
+  
+  selectedAmount: number | null = null;
+  customAmount: number | null = null;
+  showAmountError: boolean = false;
 
   numeroIdentificacion: string = '';
   validado = false;
@@ -105,6 +109,36 @@ export class FormComponent implements AfterViewInit {
     }, 100);
   }
 
+   selectAmount(amount: number): void {
+    this.selectedAmount = amount;
+    this.customAmount = amount;
+    this.showAmountError = false; 
+  }
+
+  validateAmount(): void {
+    if (this.customAmount !== null && this.customAmount < 2) {
+      this.showAmountError = true;
+      this.customAmount = null; 
+    } else {
+      this.showAmountError = false;
+    }
+  }
+
+  
+
+  onCustomAmountInput(): void {
+    this.selectedAmount = null;
+    
+    // Validar que el monto sea mínimo 2
+    if (this.customAmount && this.customAmount < 2) {
+      this.customAmount = 2;
+    }
+  }
+
+  get donationAmount(): number | null {
+    return this.selectedAmount || this.customAmount;
+  }
+
   validarIdentificacion() {
     const tipo = this.tipoIdentificacion;
     const valor = this.numeroIdentificacion;
@@ -151,6 +185,8 @@ export class FormComponent implements AfterViewInit {
 
         this.cargando = false;
       },
+
+      
       error: (err) => {
         this.validado = false;
         this.cargando = false;
