@@ -3,7 +3,6 @@ import { DonacionCarritoComponent } from '../donacion-carrito/donacion-carrito.c
 import { CommonModule } from '@angular/common';
 import { ProductosListComponent } from '../productos-list/productos-list.component';
 import { FormComponent } from '../form/form.component';
-import { ResumenCampanaComponent } from '../resumen-campana/resumen-campana.component';
 import { InformativoComponent } from '../informativo/informativo.component';
 import { FormVoluntarioComponent } from '../form-voluntario/form-voluntario.component';
 import { DonanteInforComponent } from "../donante-infor/donante-infor.component";
@@ -13,7 +12,6 @@ import { DonanteInforComponent } from "../donante-infor/donante-infor.component"
   imports: [DonacionCarritoComponent,
     CommonModule,
     FormComponent,
-    ResumenCampanaComponent,
     ProductosListComponent,
     InformativoComponent,
     FormVoluntarioComponent, DonanteInforComponent],

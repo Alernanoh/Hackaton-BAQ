@@ -2,18 +2,20 @@
   <img [src]="producto.imagen" alt="{{ producto.nombre }}" class="producto-img" />
   <div class="producto-info">
     <h4>{{ producto.nombre }}</h4>
-    <p>{{ producto.descripcion }}</p>
+    <p class="descripcion-producto">{{ producto.descripcion }}</p>
     <div class="barra-progreso">
       <div class="relleno" [style.width.%]="(producto.obtenido / producto.meta) * 100"></div>
     </div>
-   </div>
-  <div class="producto-precio">
-    <strong>\${{ producto.precio }}/unidad</strong>
-    <div class="cantidad-selector">
-      <button (click)="cambiarCantidad(-1)" [disabled]="cantidad <= 1">-</button>
-      <input type="number" [value]="cantidad" min="1" readonly>
-      <button (click)="cambiarCantidad(1)">+</button>
+  </div>
+  <div class="acciones-producto">
+    <div class="precio-cantidad-col">
+      <div class="precio-producto">${{ producto.precio }} <span class="precio-cu">c/u</span></div>
+      <div class="cantidad-selector">
+        <button (click)="cambiarCantidad(-1)" [disabled]="cantidad <= 1">-</button>
+        <input type="number" [value]="cantidad" min="1" readonly>
+        <button (click)="cambiarCantidad(1)">+</button>
+      </div>
     </div>
-    <button (click)="agregar()">AGREGAR +</button>
+    <button class="btn-agregar" (click)="agregar()">AGREGAR +</button>
   </div>
 </div>
