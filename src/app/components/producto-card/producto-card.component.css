@@ -2,35 +2,129 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  background: white;
-  padding: 1rem;
-  border-radius: 12px;
-  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+  background: #fff;
+  padding: 1.5rem;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
   height: 100%;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
 
-  img {
-    width: 100%;
-    height: 140px;
-    object-fit: cover;
-    border-radius: 8px;
-  }
+.producto-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
+}
 
-  .producto-info {
-    margin-top: 1rem;
-  }
+img {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
 
-  .producto-precio {
-    margin-top: auto;
-    text-align: right;
+.producto-info {
+  margin-top: 1.25rem;
+  color: #333;
+}
 
-    button {
-      margin-top: 0.5rem;
-      background: orange;
-      color: white;
-      padding: 0.3rem 0.8rem;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-    }
-  }
+.producto-info h4 {
+  font-size: 1.25rem;
+  margin-bottom: 0.4rem;
+  font-weight: 600;
+}
+
+.producto-info p {
+  font-size: 0.95rem;
+  color: #666;
+  line-height: 1.3;
+  margin-bottom: 1rem;
+}
+
+.barra-progreso {
+  width: 100%;
+  height: 10px;
+  background: #e0e0e0;
+  border-radius: 20px;
+  overflow: hidden;
+  margin-bottom: 0.5rem;
+}
+
+.relleno {
+  height: 100%;
+  background: linear-gradient(90deg, #ff8a00, #e52e71);
+  border-radius: 20px 0 0 20px;
+  transition: width 0.4s ease;
+}
+
+small {
+  display: block;
+  color: #999;
+  font-size: 0.85rem;
+}
+
+.producto-precio {
+  margin-top: auto;
+  text-align: right;
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: #222;
+}
+
+.cantidad-selector {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.cantidad-selector button {
+  background: #ff6600;
+  border: none;
+  color: white;
+  font-weight: 700;
+  font-size: 1.1rem;
+  padding: 0.25rem 0.7rem;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.cantidad-selector button:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+}
+
+.cantidad-selector button:hover:not(:disabled) {
+  background: #e65500;
+}
+
+.cantidad-selector input {
+  width: 45px;
+  text-align: center;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-weight: 600;
+  color: #333;
+  background: #f9f9f9;
+  pointer-events: none; /* readonly */
+}
+
+.producto-precio > button {
+  display: block;
+  margin: 1rem 0 0 auto;
+  background: #ff6600;
+  color: white;
+  padding: 0.5rem 1.2rem;
+  border-radius: 10px;
+  font-weight: 700;
+  font-size: 1rem;
+  cursor: pointer;
+  box-shadow: 0 3px 8px rgba(255, 102, 0, 0.4);
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.producto-precio > button:hover {
+  background: #e65500;
+  box-shadow: 0 6px 16px rgba(230, 85, 0, 0.6);
 }
