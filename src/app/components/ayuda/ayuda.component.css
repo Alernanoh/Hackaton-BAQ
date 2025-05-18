@@ -121,5 +121,15 @@
     padding: 1rem;
   }
 
-  
+  .grid-proyecto {
+  display: flex;
+  gap: 2rem;
+  align-items: flex-start;
+  margin-top: 1rem;
+}
+
+.grid-proyecto .col {
+  flex: 1;
+}
+ 
 }

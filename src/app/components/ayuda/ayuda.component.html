@@ -50,11 +50,20 @@
   </div>
 
       </div>
+      
       <div *ngIf="seccionActiva === 'proyecto'">
-        <app-form />
+  <div class="main-container">
+    
+    <!-- Columna izquierda -->
+    <div class="col">
+      <app-form></app-form>
+      <app-donante-infor></app-donante-infor>
+    </div>
 
-        <app-donante-infor/> 
-            </div>
+
+  </div>
+</div>
+
       <div *ngIf="seccionActiva === 'actualizaciones'" >
       <app-form-voluntario/>
       </div>
