@@ -10,6 +10,11 @@
   </div>
   <div class="producto-precio">
     <strong>\${{ producto.precio }}/unidad</strong>
+    <div class="cantidad-selector">
+      <button (click)="cambiarCantidad(-1)" [disabled]="cantidad <= 1">-</button>
+      <input type="number" [value]="cantidad" min="1" readonly>
+      <button (click)="cambiarCantidad(1)">+</button>
+    </div>
     <button (click)="agregar()">AGREGAR +</button>
   </div>
 </div>
