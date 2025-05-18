@@ -19,9 +19,9 @@ export class DonanteInforComponent {
   }
 
   causeData = {
-    title: 'Ayuda a 300 ancianos abandonados',
+    title: 'Ayuda a alimentar a quien más lo necesita',
     beneficiaries: 'Fundación BAQ',
-    description: 'Durante 20 años, Gopalan ha sido un salvavidas para ancianos abandonados. Con múltiples hogares en Mudichur, Pallikaranai, Valasaravakkam, Paalavakkam y Velapanchavadi, Akshaya Trust proporciona alimentos, atención médica y alojamiento digno a más de 300 personas mayores vulnerables.',
+    description: "Tu ayuda llega donde más se necesita Cada día, en medio de los cerros y barrios de nuestra querida Quito, muchas familias enfrentan un reto silencioso: no tienen qué comer.Pero gracias a personas como tú, ese reto puede convertirse en esperanza. El Banco de Alimentos de Quito  lleva más de 20 años trabajando con pasión y compromiso para recuperar alimentos seguros y nutritivos y llevarlos a quienes más lo necesitan. Con tu apoyo, puedes cambiar vidas. ✓  Juntos reducimos el hambre y el desperdicio alimentario. ✓ Tus fondos nos permiten optimizar procesos, llegar más rápido y ayudar a más familias.",
     benefits: [
       'Cuatro comidas nutritivas diarias',
       'Atención médica básica',

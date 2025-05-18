@@ -1,10 +1,15 @@
 <div class="productos-list">
-  <h3 style="color: antiquewhite;">Productos para donar</h3>
-  <div class="productos-scroll">
+  <div class="productos-grid">
     <app-producto-card
-      *ngFor="let prod of productos"
+      *ngFor="let prod of productosMostrados"
       [producto]="prod"
       (agregarProducto)="onAgregar(prod)">
     </app-producto-card>
   </div>
+  <button *ngIf="!mostrarTodos && productos.length > 6" class="btn-vermas" (click)="verMas()">
+    Ver más <span style="font-size:1.2em;">▼</span>
+  </button>
+  <button *ngIf="mostrarTodos && productos.length > 6" class="btn-vermas" (click)="verMenos()">
+    Ver menos <span style="font-size:1.2em;">▲</span>
+  </button>
 </div>
