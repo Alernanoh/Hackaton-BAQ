@@ -1,17 +1,48 @@
-<!-- Modal Informativo
+<!-- Incluir Bootstrap Icons en tu <head> si aún no lo tienes -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+
+<!-- Modal Informativo -->
 <div class="modal fade" id="modalInformativo" tabindex="-1" aria-labelledby="modalInformativoLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
     <div class="modal-content">
+      
       <div class="modal-header bg-warning text-white">
         <h5 class="modal-title" id="modalInformativoLabel">¡Bienvenido!</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
       </div>
-      <div class="modal-body">
-        Gracias por apoyar nuestra causa. ¡Tu ayuda alimenta esperanza en Ecuador!
+
+      <div class="modal-body text-center">
+        <!-- Imagen grande -->
+        <img src="https://www.baq.ec/wp-content/uploads/2023/09/fortaleces-valores_V1-1536x1322.jpg"
+             alt="Banco de Alimentos Quito"
+             class="img-fluid mb-4 rounded"
+             style="max-height: 400px; object-fit: cover;">
+
+        <!-- Mensaje -->
+        <p class="fs-5">Gracias por apoyar nuestra causa. ¡Tu ayuda alimenta esperanza en Ecuador! 💛</p>
+        
+        <!-- Redes Sociales -->
+        <p class="mt-4 mb-2 fw-bold">Síguenos en redes sociales:</p>
+        <div class="d-flex justify-content-center gap-4 mb-4">
+          <a href="https://www.facebook.com/openlabec/?locale=es_LA" target="_blank" class="text-primary" title="Facebook">
+            <i class="bi bi-facebook" style="font-size: 2.5rem;"></i>
+          </a>
+          <a href="https://www.instagram.com/openlabec/" target="_blank" class="text-danger" title="Instagram">
+            <i class="bi bi-instagram" style="font-size: 2.5rem;"></i>
+          </a>
+          <a href="https://ec.linkedin.com/company/openlabec" target="_blank" class="text-info" title="LinkedIn">
+            <i class="bi bi-linkedin" style="font-size: 2.5rem;"></i>
+          </a>
+        </div>
+
+        <!-- Dirección -->
+        <p class="fw-semibold">📍 Dirección física:</p>
+        <p class="text-muted fst-italic">Av. Pedro V. Maldonado S15-283 y Balzar (sur de Quito)</p>
       </div>
+
       <div class="modal-footer">
         <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Entendido</button>
       </div>
     </div>
   </div>
-</div> -->
+</div>
