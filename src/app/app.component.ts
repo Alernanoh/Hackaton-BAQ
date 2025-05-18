@@ -36,25 +36,41 @@ export class AppComponent implements OnInit {
       meta: 2000
     },
     {
-      nombre: 'Kit de Higiene',
-      descripcion: 'Incluye artículos básicos de aseo',
-      imagen: '/kit-higiene.png',
-      precio: 6.54,
+      nombre: 'Kit de Proteina',
+      descripcion: 'Incluye proteínas de origen animal y vegetal.',
+      imagen: '/kit_proteina.jpg',
+      precio: 20.54,
       obtenido: 835,
       meta: 2000
     },
     {
-      nombre: 'Botiquín de primeros auxilios',
-      descripcion: 'Para emergencias básicas',
-      imagen: '/botiquin.png',
-      precio: 8.90,
+      nombre: 'Kit de Vegetales',
+      descripcion: 'Incluye vegetales contundentes para comidas.',
+      imagen: '/kit_vegetales.jpg',
+      precio: 9.50,
+      obtenido: 430,
+      meta: 1000
+    },
+    {
+      nombre: 'Kit de lácteos',
+      descripcion: 'Lácteos varios para consumir.',
+      imagen: '/kit_lacteos.jpg',
+      precio: 13.90,
+      obtenido: 430,
+      meta: 1000
+    },
+    {
+      nombre: 'Kit de granos',
+      descripcion: 'Granos varios que incluyen proteína y firba.',
+      imagen: '/kit_granos.avif',
+      precio: 10.90,
       obtenido: 430,
       meta: 1000
     }
   ];
   seccionActiva: string | undefined;
 
-  constructor(private scrollService: ScrollService) {}
+  constructor(private scrollService: ScrollService) { }
 
   ngOnInit() {
     this.scrollService.scrollToSection$.subscribe((section: string) => {
