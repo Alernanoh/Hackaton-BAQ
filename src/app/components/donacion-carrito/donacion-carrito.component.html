@@ -24,8 +24,21 @@
 
   <!-- Totales -->
   <div class="resumen">
-    <p>Subtotal: <strong>\${{ subtotal.toFixed(2) }}</strong></p>
-    <p>Cargos de pasarela: <strong>\${{ cargosPasarela.toFixed(2) }}</strong></p>
-    <p class="total">Total: <strong>\${{ total.toFixed(2) }}</strong></p>
+    <p>Subtotal: <strong>${{ subtotal.toFixed(2) }}</strong></p>
+    <p>Cargos de pasarela: <strong>${{ cargosPasarela.toFixed(2) }}</strong></p>
+    <p class="total">Total: <strong>${{ total.toFixed(2) }}</strong></p>
+  </div>
+
+  <!-- Botón de pagar -->
+  <div style="text-align: center; margin-top: 1rem;">
+    <button class="btn-orange" (click)="abrirPagoCarrito()">Pagar</button>
+  </div>
+
+  <!-- Modal de pago -->
+  <div class="modal-pago" *ngIf="mostrarModalPago">
+    <div class="modal-pago-content">
+      <button class="modal-close" (click)="cerrarPagoCarrito()">×</button>
+      <app-form [montoCarrito]="total" [modoCarrito]="true"></app-form>
+    </div>
   </div>
 </div>

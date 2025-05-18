@@ -1,4 +1,4 @@
-import { Component, ElementRef, ViewChild, AfterViewInit } from '@angular/core';
+import { Component, ElementRef, ViewChild, AfterViewInit, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
@@ -14,6 +14,9 @@ declare const paypal: any;
 })
 export class FormComponent implements AfterViewInit {
   @ViewChild('paypalContainer', { static: false }) paypalContainer!: ElementRef;
+
+  @Input() montoCarrito: number | null = null;
+  @Input() modoCarrito: boolean = false;
 
   tipoDonante: 'extranjero' | 'ecuatoriano' = 'extranjero';
   tipoIdentificacion: 'cedula' | 'ruc' = 'cedula';
@@ -157,7 +160,31 @@ export class FormComponent implements AfterViewInit {
   }
 
   confirmarMonto(): void {
-    // Validar monto primero
+    if (this.modoCarrito) {
+      // Solo valida datos personales si no es anónima
+      if (!this.donacionAnonima) {
+        if (this.tipoDonante === 'extranjero') {
+          if (!this.extranjeroNombre || !this.extranjeroApellido || !this.extranjeroCorreo) {
+            this.mostrarBotonPaypal = false;
+            this.paypalRendered = false;
+            alert('Completa los datos personales y vuelve a intentarlo');
+            return;
+          }
+        }
+        if (this.tipoDonante === 'ecuatoriano' && !this.validado) {
+          this.mostrarBotonPaypal = false;
+          this.paypalRendered = false;
+          alert('Completa los datos personales y vuelve a intentarlo');
+          return;
+        }
+      }
+      // Si todo está bien, mostrar PayPal
+      this.paypalRendered = false;
+      this.mostrarPaypal();
+      return;
+    }
+
+    // --- flujo normal (no carrito) ---
     if (this.customAmount === null || this.customAmount < 2) {
       this.showAmountError = true;
       this.mostrarBotonPaypal = false;
@@ -165,7 +192,6 @@ export class FormComponent implements AfterViewInit {
       return;
     }
 
-    // Si es anónima, no validar datos personales, solo mostrar PayPal
     if (this.donacionAnonima) {
       this.showAmountError = false;
       this.selectedAmount = null;
@@ -174,13 +200,12 @@ export class FormComponent implements AfterViewInit {
       return;
     }
 
-    // Si NO es anónima, validar campos obligatorios
     if (this.tipoDonante === 'extranjero') {
       if (!this.extranjeroNombre || !this.extranjeroApellido || !this.extranjeroCorreo) {
         this.showAmountError = false;
         this.mostrarBotonPaypal = false;
         this.paypalRendered = false;
-        alert('Completa los datos personales y vuelve a intentarlo');
+        alert('Completa los datos personales y vuelve a intentsarlo');
         return;
       }
     }
@@ -188,11 +213,10 @@ export class FormComponent implements AfterViewInit {
       this.showAmountError = false;
       this.mostrarBotonPaypal = false;
       this.paypalRendered = false;
-      alert('Completa los datos personales y vuelve a intentarlo');
+      alert('Completa los datos personales y vuelve a intentsarlo');
       return;
     }
 
-    // Si todo está bien, mostrar PayPal
     this.showAmountError = false;
     this.selectedAmount = null;
     this.paypalRendered = false;
@@ -200,6 +224,9 @@ export class FormComponent implements AfterViewInit {
   }
 
   get donationAmount(): number | null {
+    if (this.modoCarrito && this.montoCarrito) {
+      return this.montoCarrito;
+    }
     if (this.customAmount && this.customAmount >= 2) {
       return this.customAmount;
     }
