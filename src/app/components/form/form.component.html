@@ -11,19 +11,20 @@
     </div>
 
     <!-- Monto personalizado -->
-    <div class="amount-input-container">
+    <div class="amount-input-container" style="display: flex; gap: 0.5rem; align-items: center;">
       <input
         type="number"
         [(ngModel)]="customAmount"
-        (blur)="validateAmount()"
         placeholder="$ Monto personalizado"
         class="amount-input"
         [class.error]="showAmountError"
         min="2"
+        style="flex: 1;"
       />
-      <div *ngIf="showAmountError" class="error-message">
-        El monto mínimo de donación es $2
-      </div>
+      <button type="button" class="btn-orange" (click)="confirmarMonto()">Donar</button>
+    </div>
+    <div *ngIf="showAmountError" class="error-message">
+      El monto mínimo de donación es $2
     </div>
 
     <!-- Información del donante -->
@@ -172,12 +173,6 @@
       <div *ngIf="donacionAnonima" class="anonimo-msg">
         <p>Tu donación se realizará de manera anónima. ¡Gracias por tu generosidad! 💛</p>
       </div>
-    </div>
-
-    <!-- Botones de pago al final -->
-    <div class="payment-shortcuts">
-      <button class="btn-payphone" (click)="pagarConPayPhone()">PayPhone</button>
-      <button class="btn-paypal" (click)="mostrarPaypal()">PayPal</button>
     </div>
 
     <div *ngIf="mostrarBotonPaypal" class="paypal-button-container">
