@@ -130,3 +130,39 @@ body {
 .accordion-button::after {
   filter: invert(1);
 }
+
+.terminos-derecha {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  text-align: right;
+}
+
+/* Estilos para el modal de pago */
+.modal-pago {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.48);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  padding: 1rem;
+}
+
+.modal-pago-content {
+  background: #fffef9;
+  border-radius: 24px;
+  padding: 1.8rem 1.5rem;
+  max-width: 440px;
+  width: 98vw;
+  box-shadow: 0 10px 40px rgba(25, 118, 210, 0.18);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  text-align: center;
+}
