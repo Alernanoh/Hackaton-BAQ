@@ -44,13 +44,15 @@
   font-size: 1rem;
 }
 
-.benefits-list, .impact-list {
+.benefits-list,
+.impact-list {
   list-style-type: none;
   padding: 0;
   margin: 15px 0;
 }
 
-.benefits-list li, .impact-list li {
+.benefits-list li,
+.impact-list li {
   padding: 6px 0;
   display: flex;
   align-items: center;
@@ -102,6 +104,8 @@
 .tab.active {
   color: #f7941d;
   border-bottom-color: #f7941d;
+  border-bottom: 2px solid #f7941d;
+  font-weight: bold;
 }
 
 /* Nueva clase para donación reciente */
@@ -109,13 +113,23 @@
   color: #43a047;
   font-weight: bold;
   margin-left: 0.5em;
-  animation: pop 0.7s cubic-bezier(.4,2,.6,1);
+  animation: pop 0.7s cubic-bezier(.4, 2, .6, 1);
 }
 
 @keyframes pop {
-  0% { transform: scale(0.7); opacity: 0; }
-  60% { transform: scale(1.2); opacity: 1; }
-  100% { transform: scale(1); }
+  0% {
+    transform: scale(0.7);
+    opacity: 0;
+  }
+
+  60% {
+    transform: scale(1.2);
+    opacity: 1;
+  }
+
+  100% {
+    transform: scale(1);
+  }
 }
 
 /* Responsive */
@@ -123,9 +137,10 @@
   .main-container {
     flex-direction: column;
   }
-  
+
   .banner-causa {
-    order: -1; /* Mueve el banner arriba en móviles */
+    order: -1;
+    /* Mueve el banner arriba en móviles */
     margin-bottom: 2rem;
     position: static;
   }
