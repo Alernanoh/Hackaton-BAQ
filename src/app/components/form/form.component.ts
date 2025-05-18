@@ -38,6 +38,13 @@ export class FormComponent implements AfterViewInit {
     estado: ''
   };
 
+  extranjeroNombre: string = '';
+  extranjeroApellido: string = '';
+  extranjeroCorreo: string = '';
+  extranjeroTelefono: string = '';
+
+  dedicatoria: string = '';
+
   constructor(private http: HttpClient) { }
 
   ngAfterViewInit(): void {
@@ -150,14 +157,44 @@ export class FormComponent implements AfterViewInit {
   }
 
   confirmarMonto(): void {
+    // Validar monto primero
     if (this.customAmount === null || this.customAmount < 2) {
       this.showAmountError = true;
       this.mostrarBotonPaypal = false;
       this.paypalRendered = false;
       return;
     }
+
+    // Si es anónima, no validar datos personales, solo mostrar PayPal
+    if (this.donacionAnonima) {
+      this.showAmountError = false;
+      this.selectedAmount = null;
+      this.paypalRendered = false;
+      this.mostrarPaypal();
+      return;
+    }
+
+    // Si NO es anónima, validar campos obligatorios
+    if (this.tipoDonante === 'extranjero') {
+      if (!this.extranjeroNombre || !this.extranjeroApellido || !this.extranjeroCorreo) {
+        this.showAmountError = false;
+        this.mostrarBotonPaypal = false;
+        this.paypalRendered = false;
+        alert('Completa los datos personales y vuelve a intentarlo');
+        return;
+      }
+    }
+    if (this.tipoDonante === 'ecuatoriano' && !this.validado) {
+      this.showAmountError = false;
+      this.mostrarBotonPaypal = false;
+      this.paypalRendered = false;
+      alert('Completa los datos personales y vuelve a intentarlo');
+      return;
+    }
+
+    // Si todo está bien, mostrar PayPal
     this.showAmountError = false;
-    this.selectedAmount = null; // Para que siempre tome el personalizado
+    this.selectedAmount = null;
     this.paypalRendered = false;
     this.mostrarPaypal();
   }

@@ -1,43 +1,14 @@
 <div class="donation-container">
   <div class="form-section">
-    <h2>¿Cuánto quieres donar?</h2>
-
-    <!-- Opciones de monto -->
-    <div class="amount-options">
-      <button (click)="selectAmount(12)" [class.active]="selectedAmount === 12">$12</button>
-      <button (click)="selectAmount(22)" [class.active]="selectedAmount === 22">$22</button>
-      <button (click)="selectAmount(36)" [class.active]="selectedAmount === 36">$36</button>
-      <button (click)="selectAmount(100)" [class.active]="selectedAmount === 100">$100</button>
-    </div>
-
-    <!-- Monto personalizado -->
-    <div class="amount-input-container" style="display: flex; gap: 0.5rem; align-items: center;">
-      <input
-        type="number"
-        [(ngModel)]="customAmount"
-        placeholder="$ Monto personalizado"
-        class="amount-input"
-        [class.error]="showAmountError"
-        min="2"
-        style="flex: 1;"
-      />
-      <button type="button" class="btn-orange" (click)="confirmarMonto()">Donar</button>
-    </div>
-    <div *ngIf="showAmountError" class="error-message">
-      El monto mínimo de donación es $2
-    </div>
 
     <!-- Información del donante -->
     <div class="info-donante">
       <h3>Información del donante</h3>
-
-      <!-- Checkbox de donación anónima (siempre visible) -->
       <div class="anonimo-checkbox">
         <input type="checkbox" [(ngModel)]="donacionAnonima" />
         <label>Donar anónimamente</label>
       </div>
 
-      <!-- Si NO es anónima, mostrar campos -->
       <ng-container *ngIf="!donacionAnonima">
         <!-- Tipo de donante -->
         <div class="input-group">
@@ -151,30 +122,70 @@
           <div class="inputs">
             <div class="input-group">
               <label>Nombre *</label>
-              <input type="text" placeholder="Nombre *" />
+              <input type="text" [(ngModel)]="extranjeroNombre" placeholder="Nombre *" />
             </div>
             <div class="input-group">
               <label>Apellido *</label>
-              <input type="text" placeholder="Apellido *" />
+              <input type="text" [(ngModel)]="extranjeroApellido" placeholder="Apellido *" />
             </div>
             <div class="input-group">
               <label>Correo electrónico *</label>
-              <input type="email" placeholder="Correo electrónico *" />
+              <input type="email" [(ngModel)]="extranjeroCorreo" placeholder="Correo electrónico *" />
             </div>
             <div class="input-group">
               <label>Teléfono</label>
-              <input type="tel" placeholder="Teléfono" />
+              <input type="tel" [(ngModel)]="extranjeroTelefono" placeholder="Teléfono" />
             </div>
           </div>
         </div>
       </ng-container>
 
-      <!-- Si ES donación anónima -->
       <div *ngIf="donacionAnonima" class="anonimo-msg">
         <p>Tu donación se realizará de manera anónima. ¡Gracias por tu generosidad! 💛</p>
       </div>
     </div>
 
+    <!-- ¿Cuánto quieres donar? -->
+    <h2>¿Cuánto quieres donar?</h2>
+    <div class="amount-options">
+      <button (click)="selectAmount(12)" [class.active]="selectedAmount === 12">$12</button>
+      <button (click)="selectAmount(22)" [class.active]="selectedAmount === 22">$22</button>
+      <button (click)="selectAmount(36)" [class.active]="selectedAmount === 36">$36</button>
+      <button (click)="selectAmount(100)" [class.active]="selectedAmount === 100">$100</button>
+    </div>
+    <div class="amount-input-container" style="display: flex; gap: 0.5rem; align-items: center;">
+      <input
+        type="number"
+        [(ngModel)]="customAmount"
+        placeholder="$ Monto personalizado"
+        class="amount-input"
+        [class.error]="showAmountError"
+        min="2"
+        style="flex: 1;"
+      />
+      <button type="button" class="btn-orange" (click)="confirmarMonto()">Donar</button>
+    </div>
+    <div *ngIf="showAmountError" class="error-message">
+      El monto mínimo de donación es $2
+    </div>
+
+    <!-- Campo opcional de dedicatoria -->
+    <div class="input-group" style="margin-top: 1rem;">
+      <label>
+        <span style="color: #f7941d; font-size: 1.2em;">&#10084;&#65039;</span>
+        ¿Quieres dedicar tu donación? (opcional)
+      </label>
+      <input
+        type="text"
+        [(ngModel)]="dedicatoria"
+        maxlength="120"
+        placeholder="Ej: En memoria de mi abuela, por los niños, por amor, etc."
+        style="font-style: italic;"
+      />
+      <small class="helper-text">Puedes dedicar tu donación a alguien especial o escribir tu intención 💛</small>
+    </div>
+
+    <!-- Botón de PayPal solo si corresponde -->
     <div *ngIf="mostrarBotonPaypal" class="paypal-button-container">
       <div #paypalContainer></div>
     </div>
