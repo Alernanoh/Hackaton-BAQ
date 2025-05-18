@@ -23,26 +23,46 @@
   margin-bottom: 0.5rem;
 }
 
+/* Botones de montos predefinidos */
 .amount-options {
   display: flex;
-  gap: 0.5rem;
-  flex-wrap: wrap;
+  gap: 1rem;
+  margin: 1.2rem 0 1rem 0;
+  justify-content: center;
 }
 
 .amount-options button {
-  padding: 0.5rem 1rem;
-  border: 1px solid #ccc;
-  background-color: #f7f7f7;
-  border-radius: 6px;
-  font-weight: 500;
+  flex: 1 1 0;
+  min-width: 120px;
+  max-width: 180px;
+  padding: 1rem 0.5rem;
+  font-size: 1.18rem;
+  font-family: 'Montserrat', 'Segoe UI', Arial, sans-serif;
+  font-weight: 600;
+  color: #f7941d;
+  background: #fff7e6;
+  border: 2px solid #ffe0b2;
+  border-radius: 2rem;
   cursor: pointer;
-  transition: all 0.2s ease-in-out;
+  transition: background 0.2s, color 0.2s, border 0.2s, box-shadow 0.2s;
+  box-shadow: 0 2px 8px rgba(247, 148, 29, 0.07);
+  outline: none;
+  text-align: center;
+  letter-spacing: 0.2px;
 }
 
-.amount-options button.active {
-  background-color: #f7941d;
-  color: white;
+.amount-options button.active,
+.amount-options button:focus {
+  background: #f7941d;
+  color: #fff;
   border-color: #f7941d;
+  box-shadow: 0 4px 16px rgba(247, 148, 29, 0.12);
+}
+
+.amount-options button:hover:not(.active) {
+  background: #fff3e0;
+  color: #ff9800;
+  border-color: #ffd180;
 }
 
 .amount-input {
@@ -323,4 +343,23 @@ input.warning {
   margin-top: 1rem;
   font-weight: 500;
   color: #6c4b00;
+}
+.btn-donar-grande {
+  font-size: 1.3rem;
+  padding: 1rem 2.5rem;
+  background: linear-gradient(90deg, #ffb347 0%, #ffcc33 100%);
+  color: #fff;
+  border: none;
+  border-radius: 2.5rem;
+  box-shadow: 0 4px 16px rgba(247, 148, 29, 0.15);
+  font-weight: bold;
+  letter-spacing: 1px;
+  transition: transform 0.1s, box-shadow 0.1s;
+  cursor: pointer;
+}
+
+.btn-donar-grande:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 24px rgba(247, 148, 29, 0.25);
+  background: linear-gradient(90deg, #ffcc33 0%, #ffb347 100%);
 }

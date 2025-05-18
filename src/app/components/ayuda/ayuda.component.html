@@ -3,9 +3,9 @@
     alt="Imagen de la causa" class="banner-img" style="width: 520px; height: 350px;" />
 
   <div class="info-causa">
-    <h1>Ayuda a 300 ancianos abandonados</h1>
-    <p class="subtitulo">Una iniciativa de <strong>Fundación BAQ</strong></p>
-    <p class="lema"><strong>UN HOGAR QUE SANA, UNA FAMILIA QUE CUIDA</strong></p>
+    <h1>Tu donación alimenta esperanza.</h1>
+    <p class="subtitulo">Una iniciativa de <strong>Banco de Alimentos Quito</strong></p>
+    <p class="lema"><strong>Un puente entre la abundancia y la necesidad.</strong></p>
 
     <div class="barra-progreso">
       <div class="progreso" style="width: 51.2%;"></div>
@@ -16,13 +16,17 @@
       <span>Meta: $168347.46</span>
     </div>
 
-    <div class="tabs">
-      <button class="tab" [class.active]="seccionActiva === 'productos'" (click)="cambiarSeccion('productos')">📦
-        ¿QUIERES DONAR ALIMENTOS?</button>
-      <button class="tab" [class.active]="seccionActiva === 'proyecto'" (click)="cambiarSeccion('proyecto')">💵
-        ¿QUIERES DONAR DINERO?</button>
-      <button class="tab" [class.active]="seccionActiva === 'actualizaciones'"
-        (click)="cambiarSeccion('actualizaciones')">📰 ¿QUIERES SER VOLUNTARIO?</button>
+    <div class="tabs-modern" id="tabs-ayuda">
+      <button class="tab-modern" [class.active]="seccionActiva === 'productos'" (click)="cambiarSeccion('productos')">
+        ¿Quieres donar Alimentos?
+      </button>
+      <button class="tab-modern" [class.active]="seccionActiva === 'proyecto'" (click)="cambiarSeccion('proyecto')">
+        ¿Quieres donar dinero?
+      </button>
+      <button class="tab-modern" [class.active]="seccionActiva === 'actualizaciones'" (click)="cambiarSeccion('actualizaciones')">
+        ¿Quieres ser voluntario?
+      </button>
+      <div class="tab-underline" [style.left.%]="seccionActiva === 'productos' ? 0 : seccionActiva === 'proyecto' ? 33.33 : 66.66"></div>
     </div>
 
     </div>
@@ -67,4 +71,5 @@
       <div *ngIf="seccionActiva === 'actualizaciones'" >
       <app-form-voluntario/>
       </div>
+    </div>
     </div>

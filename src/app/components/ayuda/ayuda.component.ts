@@ -30,8 +30,18 @@ export class AyudaComponent {
   title = 'hackaton';
   carrito: any[] = [];
 
-  cambiarSeccion(seccion: string): void {
+  cambiarSeccion(seccion: string) {
     this.seccionActiva = seccion;
+    setTimeout(() => {
+      let id = '';
+      if (seccion === 'productos') id = 'contenido-productos';
+      if (seccion === 'proyecto') id = 'contenido-donardinero';
+      if (seccion === 'actualizaciones') id = 'contenido-voluntariado';
+      const el = document.getElementById(id);
+      if (el) {
+        el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }, 50);
   }
 
   productos = [
