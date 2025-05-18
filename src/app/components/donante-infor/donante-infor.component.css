@@ -104,6 +104,20 @@
   border-bottom-color: #f7941d;
 }
 
+/* Nueva clase para donación reciente */
+.donacion-reciente {
+  color: #43a047;
+  font-weight: bold;
+  margin-left: 0.5em;
+  animation: pop 0.7s cubic-bezier(.4,2,.6,1);
+}
+
+@keyframes pop {
+  0% { transform: scale(0.7); opacity: 0; }
+  60% { transform: scale(1.2); opacity: 1; }
+  100% { transform: scale(1); }
+}
+
 /* Responsive */
 @media (max-width: 768px) {
   .main-container {

@@ -12,8 +12,11 @@ import { FormComponent } from "../form/form.component";
 export class DonacionCarritoComponent {
   @Input() carrito: any[] = [];
   @Output() quitarProducto = new EventEmitter<any>();
+  @Output() donacionExitosa = new EventEmitter<number>();
 
   mostrarModalPago = false;
+  agradecimientoVisible = false;
+  donacionRecienteMonto = 0;
 
   get subtotal(): number {
     return this.carrito.reduce((total, item) => total + item.precio * item.cantidad, 0);
@@ -35,5 +38,29 @@ export class DonacionCarritoComponent {
   cerrarPagoCarrito() {
     this.mostrarModalPago = false;
     document.body.style.overflow = '';
+  }
+
+  onDonacionExitosa(monto: number) {
+    this.cerrarPagoCarrito();
+    this.donacionRecienteMonto = monto;
+    this.agradecimientoVisible = true;
+    // Emitimos el monto para la barra de progreso
+    this.donacionExitosa.emit(monto);
+  }
+
+  cerrarAgradecimiento() {
+    this.agradecimientoVisible = false;
+    // Opcional: scroll al inicio
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  cambiarCantidad(item: any, delta: number) {
+    const idx = this.carrito.findIndex(p => p.nombre === item.nombre);
+    if (idx > -1) {
+      const nueva = this.carrito[idx].cantidad + delta;
+      if (nueva >= 1) {
+        this.carrito[idx].cantidad = nueva;
+      }
+    }
   }
 }
