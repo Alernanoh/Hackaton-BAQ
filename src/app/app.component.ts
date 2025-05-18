@@ -9,6 +9,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { FormComponent } from "./components/form/form.component";
 import { InformativoComponent } from "./components/informativo/informativo.component";
 import { AyudaComponent } from "./components/ayuda/ayuda.component";
+import { ScrollService } from './services/scroll.service';
 
 @Component({
   selector: 'app-root',
@@ -24,7 +25,6 @@ import { AyudaComponent } from "./components/ayuda/ayuda.component";
     FormComponent,
     InformativoComponent,
     AyudaComponent,
-    FormsModule
   ],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
