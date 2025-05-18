@@ -11,13 +11,14 @@
   background-color: #fff;
   padding: 2rem;
   border-radius: 12px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.05);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
 }
 
-.form-section h2, .form-section h3 {
+.form-section h2,
+.form-section h3 {
   color: #333;
   margin-bottom: 0.5rem;
 }
@@ -79,6 +80,7 @@
   flex: 1;
   min-width: 200px;
   gap: 0.4rem;
+  margin-bottom: 1rem;
 }
 
 .input-group label {
@@ -129,38 +131,6 @@
   margin-top: 1rem;
 }
 
-.btn-gray {
-  background: #eee;
-  color: #333;
-  border: none;
-  border-radius: 6px;
-  padding: 0.3rem 0.7rem;
-  cursor: pointer;
-  font-size: 0.95rem;
-}
-
-small {
-  margin-top: 0.5rem;
-  font-size: 0.85rem;
-  color: #666;
-}
-
-.progressbar {
-  display: flex;
-  align-items: center;
-  gap: 0.7rem;
-}
-.progressbar-bar {
-  width: 24px;
-  height: 24px;
-  border: 3px solid #f7941d;
-  border-top: 3px solid #fff;
-  border-radius: 50%;
-  animation: spin 1s linear infinite;
-}
-@keyframes spin {
-  100% { transform: rotate(360deg); }
-}
 .btn-orange.disabled {
   opacity: 0.4;
   cursor: not-allowed !important;
@@ -169,6 +139,62 @@ small {
 
 .btn-orange.disabled:hover {
   cursor: not-allowed;
+}
+
+.btn-gray {
+  background: #ccc;
+  color: #333;
+  border: none;
+  padding: 0.6rem 1.2rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.btn-gray:hover {
+  background-color: #bbb;
+}
+
+.btn-reset {
+  background-color: #eee;
+  color: #333;
+  border: none;
+  padding: 0.7rem 1.5rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.btn-reset:hover {
+  background-color: #d5d5d5;
+}
+
+small {
+  margin-top: 0.5rem;
+  font-size: 0.85rem;
+  color: #666;
+}
+
+.helper-text {
+  font-size: 0.85rem;
+  color: #999;
+  margin-top: 0.25rem;
+  display: block;
+}
+
+input.warning {
+  border-color: orange;
+}
+
+.form-actions {
+  margin-top: 1.5rem;
+  text-align: right;
 }
 
 .payment-shortcuts {
@@ -207,42 +233,94 @@ small {
 .btn-paypal:hover {
   background-color: #005fa3;
 }
+
 .paypal-button-container {
   margin-top: 1rem;
   display: flex;
   justify-content: center;
 }
-.input-group {
-  margin-bottom: 1rem;
+
+.progressbar {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
 }
 
-.helper-text {
-  font-size: 0.85rem;
-  color: #999;
-  margin-top: 0.25rem;
-  display: block;
+.progressbar-bar {
+  width: 24px;
+  height: 24px;
+  border: 3px solid #f7941d;
+  border-top: 3px solid #fff;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
 }
 
-input.warning {
-  border-color: orange;
+@keyframes spin {
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
-.form-actions {
+/* NUEVO: Grid para campos validados */
+.inputs-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.2rem;
+  margin-top: 1rem;
+}
+
+/* NUEVO: Para expandir ciertos campos */
+.full-width {
+  grid-column: span 2;
+}
+
+@media (max-width: 768px) {
+  .full-width {
+    grid-column: span 1;
+  }
+}
+
+.card-identificacion {
+  background-color: #fcfcfc;
+  border: 1px solid #f0f0f0;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+  margin-bottom: 1.5rem;
+}
+
+.identificacion-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1rem;
+}
+
+.validate-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   margin-top: 1.5rem;
-  text-align: right;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+.radio-group {
+  display: flex;
+  gap: 1.5rem;
+  padding-top: 0.5rem;
 }
 
-.btn-gray {
-  background-color: #ccc;
-  color: #333;
-  border: none;
-  padding: 0.6rem 1.2rem;
+.radio-group label {
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+.anonimo-msg {
+  padding: 1rem;
+  background-color: #fff8e1;
+  border-left: 4px solid #ffc107;
   border-radius: 6px;
-  cursor: pointer;
-  font-weight: bold;
-  transition: background-color 0.3s ease;
-}
-
-.btn-gray:hover {
-  background-color: #bbb;
+  margin-top: 1rem;
+  font-weight: 500;
+  color: #6c4b00;
 }

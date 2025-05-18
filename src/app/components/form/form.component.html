@@ -12,12 +12,12 @@
 
     <!-- Monto personalizado -->
     <div class="amount-input-container">
-      <input 
-        type="number" 
-        [(ngModel)]="customAmount" 
+      <input
+        type="number"
+        [(ngModel)]="customAmount"
         (blur)="validateAmount()"
-        placeholder="$ Monto personalizado" 
-        class="amount-input" 
+        placeholder="$ Monto personalizado"
+        class="amount-input"
         [class.error]="showAmountError"
         min="2"
       />
@@ -26,153 +26,162 @@
       </div>
     </div>
 
-    <!-- Botones de pago -->
+    <!-- Información del donante -->
+    <div class="info-donante">
+      <h3>Información del donante</h3>
+
+      <!-- Checkbox de donación anónima (siempre visible) -->
+      <div class="anonimo-checkbox">
+        <input type="checkbox" [(ngModel)]="donacionAnonima" />
+        <label>Donar anónimamente</label>
+      </div>
+
+      <!-- Si NO es anónima, mostrar campos -->
+      <ng-container *ngIf="!donacionAnonima">
+        <!-- Tipo de donante -->
+        <div class="input-group">
+          <label>Tipo de donante</label>
+          <select [(ngModel)]="tipoDonante" (change)="cambiarTipoDonante(tipoDonante)">
+            <option value="extranjero">Extranjero</option>
+            <option value="ecuatoriano">Ecuatoriano</option>
+          </select>
+        </div>
+
+        <!-- Donante ecuatoriano -->
+        <div *ngIf="tipoDonante === 'ecuatoriano'" class="card-identificacion">
+          <div class="input-group">
+            <label>Tipo de identificación</label>
+            <div class="radio-group">
+              <label>
+                <input type="radio" [(ngModel)]="tipoIdentificacion" value="cedula" /> Cédula
+              </label>
+              <label>
+                <input type="radio" [(ngModel)]="tipoIdentificacion" value="ruc" /> RUC
+              </label>
+            </div>
+          </div>
+
+          <div class="input-group">
+            <label>Número</label>
+            <input
+              type="text"
+              [(ngModel)]="numeroIdentificacion"
+              placeholder="Ingrese número de identificación"
+              [disabled]="validado || cargando"
+            />
+          </div>
+
+          <div class="form-actions validate-actions">
+            <div *ngIf="cargando" class="progressbar">
+              <div class="progressbar-bar"></div>
+              <span>Validando identificación...</span>
+            </div>
+            <button
+              *ngIf="!validado"
+              class="btn-orange"
+              [class.disabled]="cargando"
+              (click)="validarIdentificacion()"
+              [disabled]="cargando"
+            >
+              Validar
+            </button>
+          </div>
+
+          <!-- Datos validados -->
+          <div *ngIf="validado" class="inputs-grid">
+            <div class="input-group">
+              <label *ngIf="tipoIdentificacion === 'cedula'">Nombres *</label>
+              <label *ngIf="tipoIdentificacion === 'ruc'">Razón Social *</label>
+              <input type="text" [value]="datosValidados.nombre" disabled />
+            </div>
+
+            <div class="input-group">
+              <label *ngIf="tipoIdentificacion === 'cedula'">Apellidos *</label>
+              <label *ngIf="tipoIdentificacion === 'ruc'">Nombre Comercial</label>
+              <input type="text" [value]="datosValidados.apellido" disabled />
+            </div>
+
+            <div class="input-group">
+              <label>Correo electrónico *</label>
+              <input
+                type="email"
+                [(ngModel)]="datosValidados.correo"
+                placeholder="Ingresa tu correo electrónico"
+                [class.warning]="!datosValidados.correo"
+              />
+              <small *ngIf="!datosValidados.correo" class="helper-text">
+                Completa este campo para poder contactarte
+              </small>
+            </div>
+
+            <div class="input-group">
+              <label>Teléfono</label>
+              <input
+                type="tel"
+                [(ngModel)]="datosValidados.telefono"
+                placeholder="Ingresa tu número de teléfono"
+                [class.warning]="!datosValidados.telefono"
+              />
+              <small *ngIf="!datosValidados.telefono" class="helper-text">
+                Este campo es opcional, pero recomendado
+              </small>
+            </div>
+
+            <div class="input-group full-width" *ngIf="datosValidados.actividad">
+              <label>Actividad Económica</label>
+              <input type="text" [value]="datosValidados.actividad" disabled />
+            </div>
+
+            <div class="input-group full-width" *ngIf="datosValidados.estado">
+              <label>Estado del contribuyente</label>
+              <input type="text" [value]="datosValidados.estado" disabled />
+            </div>
+
+            <div class="form-actions full-width">
+              <button class="btn-reset" type="button" (click)="volverAEmpezar()">
+                🔁 Volver a empezar
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Donante extranjero -->
+        <div *ngIf="tipoDonante === 'extranjero'">
+          <div class="inputs">
+            <div class="input-group">
+              <label>Nombre *</label>
+              <input type="text" placeholder="Nombre *" />
+            </div>
+            <div class="input-group">
+              <label>Apellido *</label>
+              <input type="text" placeholder="Apellido *" />
+            </div>
+            <div class="input-group">
+              <label>Correo electrónico *</label>
+              <input type="email" placeholder="Correo electrónico *" />
+            </div>
+            <div class="input-group">
+              <label>Teléfono</label>
+              <input type="tel" placeholder="Teléfono" />
+            </div>
+          </div>
+        </div>
+      </ng-container>
+
+      <!-- Si ES donación anónima -->
+      <div *ngIf="donacionAnonima" class="anonimo-msg">
+        <p>Tu donación se realizará de manera anónima. ¡Gracias por tu generosidad! 💛</p>
+      </div>
+    </div>
+
+    <!-- Botones de pago al final -->
     <div class="payment-shortcuts">
       <button class="btn-payphone" (click)="pagarConPayPhone()">PayPhone</button>
       <button class="btn-paypal" (click)="mostrarPaypal()">PayPal</button>
     </div>
 
-    <!-- Botón de PayPal -->
     <div *ngIf="mostrarBotonPaypal" class="paypal-button-container">
       <div #paypalContainer></div>
-    </div>
-
-    <!-- Información del donante -->
-    <div class="info-donante">
-      <h3>Información del donante</h3>
-
-      <!-- Tipo de donante -->
-      <div class="input-group">
-        <label>Tipo de donante</label>
-        <select [(ngModel)]="tipoDonante" (change)="cambiarTipoDonante(tipoDonante)">
-          <option value="extranjero">Extranjero</option>
-          <option value="ecuatoriano">Ecuatoriano</option>
-        </select>
-      </div>
-
-      <!-- Donante ecuatoriano -->
-      <div *ngIf="tipoDonante === 'ecuatoriano'">
-        <!-- Identificación -->
-        <div class="input-group">
-          <label>Tipo de identificación</label>
-          <select [(ngModel)]="tipoIdentificacion">
-            <option value="cedula">Cédula</option>
-            <option value="ruc">RUC</option>
-          </select>
-        </div>
-
-        <div class="input-group">
-          <label>Número</label>
-          <input
-            type="text"
-            [(ngModel)]="numeroIdentificacion"
-            placeholder="Ingrese número de identificación"
-            [disabled]="validado || cargando"
-          />
-        </div>
-
-        <!-- Barra de carga -->
-        <div *ngIf="cargando" class="progressbar" style="margin-bottom: 1rem;">
-          <div class="progressbar-bar"></div>
-          <span>Validando identificación...</span>
-        </div>
-
-        <!-- Botones -->
-        <div class="form-actions">
-          <button
-            *ngIf="!validado"
-            class="btn-orange"
-            [class.disabled]="cargando"
-            (click)="validarIdentificacion()"
-            [disabled]="cargando"
-          >
-            Validar
-          </button>
-
-          <button
-            *ngIf="validado"
-            class="btn-gray"
-            type="button"
-            (click)="volverAEmpezar()"
-          >
-            🔁 Volver a empezar
-          </button>
-        </div>
-
-        <!-- Datos validados -->
-        <div *ngIf="validado" class="inputs" style="margin-top: 1rem;">
-          <div class="input-group">
-            <label>Nombres *</label>
-            <input type="text" [value]="datosValidados.nombre" disabled />
-          </div>
-          <div class="input-group">
-            <label>Apellidos *</label>
-            <input type="text" [value]="datosValidados.apellido" disabled />
-          </div>
-
-          <div class="input-group">
-            <label>Correo electrónico *</label>
-            <input
-              type="email"
-              [(ngModel)]="datosValidados.correo"
-              placeholder="Ingresa tu correo electrónico"
-              [class.warning]="!datosValidados.correo"
-            />
-            <small *ngIf="!datosValidados.correo" class="helper-text">
-              Completa este campo para poder contactarte
-            </small>
-          </div>
-
-          <div class="input-group">
-            <label>Teléfono</label>
-            <input
-              type="tel"
-              [(ngModel)]="datosValidados.telefono"
-              placeholder="Ingresa tu número de teléfono"
-              [class.warning]="!datosValidados.telefono"
-            />
-            <small *ngIf="!datosValidados.telefono" class="helper-text">
-              Este campo es opcional, pero recomendado
-            </small>
-          </div>
-
-          <div class="input-group" *ngIf="datosValidados.actividad">
-            <label>Actividad Económica</label>
-            <input type="text" [value]="datosValidados.actividad" disabled />
-          </div>
-          <div class="input-group" *ngIf="datosValidados.estado">
-            <label>Estado del contribuyente</label>
-            <input type="text" [value]="datosValidados.estado" disabled />
-          </div>
-        </div>
-      </div>
-
-      <!-- Donante extranjero -->
-      <div *ngIf="tipoDonante === 'extranjero'">
-        <div class="anonimo-checkbox">
-          <input type="checkbox" />
-          <label>Donar anónimamente</label>
-        </div>
-
-        <div class="inputs">
-          <div class="input-group">
-            <label>Nombre *</label>
-            <input type="text" placeholder="Nombre *" />
-          </div>
-          <div class="input-group">
-            <label>Apellido *</label>
-            <input type="text" placeholder="Apellido *" />
-          </div>
-          <div class="input-group">
-            <label>Correo electrónico *</label>
-            <input type="email" placeholder="Correo electrónico *" />
-          </div>
-          <div class="input-group">
-            <label>Teléfono</label>
-            <input type="tel" placeholder="Teléfono" />
-          </div>
-        </div>
-      </div>
     </div>
   </div>
 </div>

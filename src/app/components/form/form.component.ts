@@ -21,6 +21,8 @@ export class FormComponent implements AfterViewInit {
   selectedAmount: number | null = null;
   customAmount: number | null = null;
   showAmountError: boolean = false;
+  donacionAnonima: boolean = false;
+
 
   numeroIdentificacion: string = '';
   validado = false;
@@ -82,32 +84,39 @@ export class FormComponent implements AfterViewInit {
     });
   }
 
-  mostrarPaypal() {
-    this.mostrarBotonPaypal = true;
-
-    setTimeout(() => {
-      paypal.Buttons({
-        createOrder: (data: any, actions: any) => {
-          return actions.order.create({
-            purchase_units: [{
-              amount: {
-                value: '22.00' // Monto fijo por ahora
-              }
-            }]
-          });
-        },
-        onApprove: async (data: any, actions: any) => {
-          const order = await actions.order.capture();
-          console.log('✅ Pago PayPal exitoso:', order);
-          alert('¡Gracias por tu donación vía PayPal!');
-        },
-        onError: (err: any) => {
-          console.error('❌ Error con PayPal:', err);
-          alert('Ocurrió un error con PayPal.');
-        }
-      }).render(this.paypalContainer.nativeElement);
-    }, 100);
+mostrarPaypal() {
+  const monto = this.donationAmount;
+  if (!monto || monto < 2) {
+    alert('Por favor ingresa un monto válido (mínimo $2)');
+    return;
   }
+
+  this.mostrarBotonPaypal = true;
+
+  setTimeout(() => {
+    paypal.Buttons({
+      createOrder: (data: any, actions: any) => {
+        return actions.order.create({
+          purchase_units: [{
+            amount: {
+              value: monto.toFixed(2) // Usa el monto dinámico formateado a dos decimales
+            }
+          }]
+        });
+      },
+      onApprove: async (data: any, actions: any) => {
+        const order = await actions.order.capture();
+        console.log('✅ Pago PayPal exitoso:', order);
+        alert('¡Gracias por tu donación vía PayPal!');
+      },
+      onError: (err: any) => {
+        console.error('❌ Error con PayPal:', err);
+        alert('Ocurrió un error con PayPal.');
+      }
+    }).render(this.paypalContainer.nativeElement);
+  }, 100);
+}
+
 
    selectAmount(amount: number): void {
     this.selectedAmount = amount;
