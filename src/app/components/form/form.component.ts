@@ -1,7 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild, AfterViewInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
+
+declare const paypal: any;
 
 @Component({
   selector: 'app-form',
@@ -10,13 +12,16 @@ import { HttpClient } from '@angular/common/http';
   templateUrl: './form.component.html',
   styleUrls: ['./form.component.css']
 })
-export class FormComponent {
+export class FormComponent implements AfterViewInit {
+  @ViewChild('paypalContainer', { static: false }) paypalContainer!: ElementRef;
+
   tipoDonante: 'extranjero' | 'ecuatoriano' = 'extranjero';
   tipoIdentificacion: 'cedula' | 'ruc' = 'cedula';
 
   numeroIdentificacion: string = '';
   validado = false;
   cargando = false;
+  mostrarBotonPaypal = false;
 
   datosValidados = {
     nombre: '',
@@ -28,6 +33,10 @@ export class FormComponent {
   };
 
   constructor(private http: HttpClient) { }
+
+  ngAfterViewInit(): void {
+    // se utiliza setTimeout en mostrarPaypal()
+  }
 
   cambiarTipoDonante(tipo: 'extranjero' | 'ecuatoriano') {
     this.tipoDonante = tipo;
@@ -50,6 +59,52 @@ export class FormComponent {
     };
   }
 
+  pagarConPayPhone() {
+    const monto = 2200; // En centavos (22.00)
+    const numero = '0987654321'; // Teléfono simulado
+
+    this.http.post('http://localhost:3000/api/payphone', {
+      amount: monto,
+      phoneNumber: numero,
+      cedula: '0501234567'
+    }).subscribe({
+      next: (resp: any) => {
+        window.location.href = resp.paymentUrl;
+      },
+      error: err => {
+        alert('Error al iniciar pago con PayPhone');
+        console.error(err);
+      }
+    });
+  }
+
+  mostrarPaypal() {
+    this.mostrarBotonPaypal = true;
+
+    setTimeout(() => {
+      paypal.Buttons({
+        createOrder: (data: any, actions: any) => {
+          return actions.order.create({
+            purchase_units: [{
+              amount: {
+                value: '22.00' // Monto fijo por ahora
+              }
+            }]
+          });
+        },
+        onApprove: async (data: any, actions: any) => {
+          const order = await actions.order.capture();
+          console.log('✅ Pago PayPal exitoso:', order);
+          alert('¡Gracias por tu donación vía PayPal!');
+        },
+        onError: (err: any) => {
+          console.error('❌ Error con PayPal:', err);
+          alert('Ocurrió un error con PayPal.');
+        }
+      }).render(this.paypalContainer.nativeElement);
+    }, 100);
+  }
+
   validarIdentificacion() {
     const tipo = this.tipoIdentificacion;
     const valor = this.numeroIdentificacion;
@@ -60,7 +115,7 @@ export class FormComponent {
     }
 
     if (tipo === 'ruc' && valor.length !== 13) {
-      alert('Número de RUC inválido (debe tener 13 dígitos)');
+      alert('Número de RUC inválido');
       return;
     }
 

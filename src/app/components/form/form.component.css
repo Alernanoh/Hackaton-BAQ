@@ -170,3 +170,45 @@ small {
 .btn-orange.disabled:hover {
   cursor: not-allowed;
 }
+
+.payment-shortcuts {
+  margin-top: 1rem;
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.btn-payphone,
+.btn-paypal {
+  flex: 1;
+  padding: 0.6rem 1rem;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.btn-payphone {
+  background-color: #ffcc00;
+  color: #000;
+}
+
+.btn-payphone:hover {
+  background-color: #e6b800;
+}
+
+.btn-paypal {
+  background-color: #0070ba;
+  color: white;
+}
+
+.btn-paypal:hover {
+  background-color: #005fa3;
+}
+.paypal-button-container {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: center;
+}
