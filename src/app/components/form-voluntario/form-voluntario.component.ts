@@ -21,11 +21,22 @@ export class FormVoluntarioComponent {
     aceptaTerminos: false
   };
 
+  mostrarModalConfirmacion = false;
+
   onSubmit() {
     const form = document.querySelector('.needs-validation');
     if (form) {
       form.classList.add('was-validated');
     }
-    console.log('Datos enviados:', this.voluntario);
+    if (this.voluntario.aceptaTerminos) {
+      this.mostrarModalConfirmacion = true;
+    }
+  }
+
+  cerrarModalConfirmacion() {
+    this.mostrarModalConfirmacion = false;
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    // Redirige al inicio (ajusta si usas router)
+    window.location.href = '/';
   }
 }
