@@ -195,6 +195,43 @@
   background-color: #d5d5d5;
 }
 
+.btn-reset-rojo {
+  background: linear-gradient(90deg, #e53935 0%, #b71c1c 100%);
+  color: #fff;
+  border: none;
+  border-radius: 1.2rem;
+  font-size: 0.98rem;
+  font-weight: 600;
+  padding: 0.45rem 1.3rem;
+  box-shadow: 0 2px 8px rgba(229, 57, 53, 0.10);
+  cursor: pointer;
+  margin-right: 0.7rem;
+  transition: background 0.18s, box-shadow 0.18s;
+}
+
+.btn-reset-rojo:hover {
+  background: linear-gradient(90deg, #b71c1c 0%, #e53935 100%);
+  box-shadow: 0 4px 16px rgba(229, 57, 53, 0.18);
+}
+
+.btn-pdf-verde {
+  background: linear-gradient(90deg, #43a047 0%, #388e3c 100%);
+  color: #fff;
+  border: none;
+  border-radius: 1.2rem;
+  font-size: 0.98rem;
+  font-weight: 600;
+  padding: 0.45rem 1.3rem;
+  box-shadow: 0 2px 8px rgba(67, 160, 71, 0.10);
+  cursor: pointer;
+  transition: background 0.18s, box-shadow 0.18s;
+}
+
+.btn-pdf-verde:hover {
+  background: linear-gradient(90deg, #388e3c 0%, #43a047 100%);
+  box-shadow: 0 4px 16px rgba(67, 160, 71, 0.18);
+}
+
 small {
   margin-top: 0.5rem;
   font-size: 0.85rem;

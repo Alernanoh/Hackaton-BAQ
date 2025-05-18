@@ -2,6 +2,7 @@ import { Component, ElementRef, ViewChild, AfterViewInit, Input, Output, EventEm
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
+import { jsPDF } from 'jspdf';
 
 declare const paypal: any;
 
@@ -286,4 +287,29 @@ export class FormComponent implements AfterViewInit {
       }
     });
   }
+
+  generarPDF() {
+    const doc = new jsPDF();
+
+    doc.setFontSize(18);
+    doc.text('Resumen de Donación', 14, 22);
+
+    doc.setFontSize(12);
+    doc.text(`Nombre: ${this.datosValidados.nombre}`, 14, 40);
+    doc.text(`Apellido / Nombre Comercial: ${this.datosValidados.apellido}`, 14, 50);
+
+    if (this.datosValidados.actividad) {
+      doc.text(`Actividad Económica: ${this.datosValidados.actividad}`, 14, 60);
+    }
+    if (this.datosValidados.estado) {
+      doc.text(`Estado del contribuyente: ${this.datosValidados.estado}`, 14, 70);
+    }
+
+    doc.text(`Correo electrónico: ${this.datosValidados.correo}`, 14, 80);
+    doc.text(`Teléfono: ${this.datosValidados.telefono}`, 14, 90);
+
+    doc.save('resumen-donacion.pdf');
+  }
+
+  
 }
