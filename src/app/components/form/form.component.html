@@ -1,7 +1,8 @@
 <div class="donation-container">
   <div class="form-section">
     <h2>¿Cuánto quieres donar?</h2>
-    
+
+    <!-- Opciones de monto -->
     <div class="amount-options">
       <button (click)="selectAmount(12)" [class.active]="selectedAmount === 12">$12</button>
       <button (click)="selectAmount(22)" [class.active]="selectedAmount === 22">$22</button>
@@ -9,6 +10,7 @@
       <button (click)="selectAmount(100)" [class.active]="selectedAmount === 100">$100</button>
     </div>
 
+    <!-- Monto personalizado -->
     <div class="amount-input-container">
       <input 
         type="number" 
@@ -22,25 +24,24 @@
       <div *ngIf="showAmountError" class="error-message">
         El monto mínimo de donación es $2
       </div>
-      
-<!-- NUEVA SECCIÓN DE BOTONES DE PAGO -->
-<div class="payment-shortcuts">
-  <button class="btn-payphone" (click)="pagarConPayPhone()">PayPhone</button>
-  <button class="btn-paypal" (click)="mostrarPaypal()">PayPal</button>
-</div>
+    </div>
 
-<!-- CONTENEDOR PAYPAL -->  
-<div *ngIf="mostrarBotonPaypal" class="paypal-button-container">
-  <div #paypalContainer></div>
-</div>
+    <!-- Botones de pago -->
+    <div class="payment-shortcuts">
+      <button class="btn-payphone" (click)="pagarConPayPhone()">PayPhone</button>
+      <button class="btn-paypal" (click)="mostrarPaypal()">PayPal</button>
+    </div>
 
+    <!-- Botón de PayPal -->
+    <div *ngIf="mostrarBotonPaypal" class="paypal-button-container">
+      <div #paypalContainer></div>
+    </div>
 
-
-
+    <!-- Información del donante -->
     <div class="info-donante">
       <h3>Información del donante</h3>
 
-      <!-- Selección de nacionalidad -->
+      <!-- Tipo de donante -->
       <div class="input-group">
         <label>Tipo de donante</label>
         <select [(ngModel)]="tipoDonante" (change)="cambiarTipoDonante(tipoDonante)">
@@ -49,8 +50,9 @@
         </select>
       </div>
 
-      <!-- Sección ECUATORIANO -->
+      <!-- Donante ecuatoriano -->
       <div *ngIf="tipoDonante === 'ecuatoriano'">
+        <!-- Identificación -->
         <div class="input-group">
           <label>Tipo de identificación</label>
           <select [(ngModel)]="tipoIdentificacion">
@@ -69,44 +71,71 @@
           />
         </div>
 
-        <!-- Progressbar -->
+        <!-- Barra de carga -->
         <div *ngIf="cargando" class="progressbar" style="margin-bottom: 1rem;">
           <div class="progressbar-bar"></div>
           <span>Validando identificación...</span>
         </div>
 
-        <!-- Botón Validar -->
-        <button
-          *ngIf="!validado"
-          class="btn-orange"
-          [class.disabled]="cargando"
-          (click)="validarIdentificacion()"
-          [disabled]="cargando"
-        >
-          Validar
-        </button>
+        <!-- Botones -->
+        <div class="form-actions">
+          <button
+            *ngIf="!validado"
+            class="btn-orange"
+            [class.disabled]="cargando"
+            (click)="validarIdentificacion()"
+            [disabled]="cargando"
+          >
+            Validar
+          </button>
 
-        <!-- Botón Volver a empezar -->
-        <button
-          *ngIf="validado"
-          class="btn-gray"
-          style="margin-left: 1rem;"
-          type="button"
-          (click)="volverAEmpezar()"
-        >
-          Volver a empezar
-        </button>
+          <button
+            *ngIf="validado"
+            class="btn-gray"
+            type="button"
+            (click)="volverAEmpezar()"
+          >
+            🔁 Volver a empezar
+          </button>
+        </div>
 
-        <!-- Resultado desde la API -->
+        <!-- Datos validados -->
         <div *ngIf="validado" class="inputs" style="margin-top: 1rem;">
           <div class="input-group">
-            <label>Nombre *</label>
+            <label>Nombres *</label>
             <input type="text" [value]="datosValidados.nombre" disabled />
           </div>
           <div class="input-group">
-            <label>Apellido / Nombre Comercial</label>
+            <label>Apellidos *</label>
             <input type="text" [value]="datosValidados.apellido" disabled />
           </div>
+
+          <div class="input-group">
+            <label>Correo electrónico *</label>
+            <input
+              type="email"
+              [(ngModel)]="datosValidados.correo"
+              placeholder="Ingresa tu correo electrónico"
+              [class.warning]="!datosValidados.correo"
+            />
+            <small *ngIf="!datosValidados.correo" class="helper-text">
+              Completa este campo para poder contactarte
+            </small>
+          </div>
+
+          <div class="input-group">
+            <label>Teléfono</label>
+            <input
+              type="tel"
+              [(ngModel)]="datosValidados.telefono"
+              placeholder="Ingresa tu número de teléfono"
+              [class.warning]="!datosValidados.telefono"
+            />
+            <small *ngIf="!datosValidados.telefono" class="helper-text">
+              Este campo es opcional, pero recomendado
+            </small>
+          </div>
+
           <div class="input-group" *ngIf="datosValidados.actividad">
             <label>Actividad Económica</label>
             <input type="text" [value]="datosValidados.actividad" disabled />
@@ -115,18 +144,10 @@
             <label>Estado del contribuyente</label>
             <input type="text" [value]="datosValidados.estado" disabled />
           </div>
-          <div class="input-group">
-            <label>Correo electrónico *</label>
-            <input type="email" [value]="datosValidados.correo" disabled />
-          </div>
-          <div class="input-group">
-            <label>Teléfono</label>
-            <input type="tel" [value]="datosValidados.telefono" disabled />
-          </div>
         </div>
       </div>
 
-      <!-- Sección EXTRANJERO -->
+      <!-- Donante extranjero -->
       <div *ngIf="tipoDonante === 'extranjero'">
         <div class="anonimo-checkbox">
           <input type="checkbox" />
@@ -142,9 +163,6 @@
             <label>Apellido *</label>
             <input type="text" placeholder="Apellido *" />
           </div>
-        </div>
-
-        <div class="inputs">
           <div class="input-group">
             <label>Correo electrónico *</label>
             <input type="email" placeholder="Correo electrónico *" />
