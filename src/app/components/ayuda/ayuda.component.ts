@@ -10,6 +10,7 @@ import { FormComponent } from '../form/form.component';
 import { ResumenCampanaComponent } from '../resumen-campana/resumen-campana.component';
 import { InformativoComponent } from '../informativo/informativo.component';
 import { FormVoluntarioComponent } from '../form-voluntario/form-voluntario.component';
+import { DonanteInforComponent } from "../donante-infor/donante-infor.component";
 
 @Component({
   selector: 'app-ayuda',
@@ -20,8 +21,7 @@ import { FormVoluntarioComponent } from '../form-voluntario/form-voluntario.comp
     ResumenCampanaComponent,
     ProductosListComponent,
     InformativoComponent,
-    FormVoluntarioComponent,
-  ],
+    FormVoluntarioComponent, DonanteInforComponent],
   templateUrl: './ayuda.component.html',
   styleUrl: './ayuda.component.css'
 })

@@ -8,11 +8,17 @@ import { Component, Input } from '@angular/core';
 })
 export class DonanteInforComponent {
 
-  @Input() showImpactSection: boolean = true;
+    @Input() showImpactSection: boolean = true;
+  @Input() currentAmount: number = 86245.30;
+  @Input() goalAmount: number = 168347.46;
   
+  get progress(): number {
+    return Math.min(100, (this.currentAmount / this.goalAmount) * 100);
+  }
+
   causeData = {
-    title: 'UN HOGAR QUE SANA, UNA FAMILIA QUE CUIDA',
-    beneficiaries: 'Ancianos beneficiarios',
+    title: 'Ayuda a 300 ancianos abandonados',
+    beneficiaries: 'Fundación BAQ',
     description: 'Durante 20 años, Gopalan ha sido un salvavidas para ancianos abandonados. Con múltiples hogares en Mudichur, Pallikaranai, Valasaravakkam, Paalavakkam y Velapanchavadi, Akshaya Trust proporciona alimentos, atención médica y alojamiento digno a más de 300 personas mayores vulnerables.',
     benefits: [
       'Cuatro comidas nutritivas diarias',

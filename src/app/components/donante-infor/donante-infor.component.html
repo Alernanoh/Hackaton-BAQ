@@ -1,26 +1,39 @@
-<div class="donante-info-container">
-  <div class="cause-header">
+<div class="banner-causa">
+  <div class="info-causa">
     <h1>{{ causeData.title }}</h1>
-    <p class="beneficiaries">- {{ causeData.beneficiaries }}</p>
-  </div>
-
-  <div class="cause-description">
-    <h2>Sobre esta causa</h2>
-    <p>{{ causeData.description }}</p>
+    <p class="subtitulo">- {{ causeData.beneficiaries }}</p>
+    <p class="lema">Tu ayuda hace la diferencia</p>
     
-    <ul class="benefits-list">
-      <li *ngFor="let benefit of causeData.benefits">
-        <span class="check-icon">✓</span> {{ benefit }}
-      </li>
-    </ul>
-  </div>
+    <div class="tabs">
+      <button class="tab active">Sobre la causa</button>
+      <button class="tab">Impacto</button>
+    </div>
 
-  <div *ngIf="showImpactSection" class="impact-section">
-    <h2>El impacto de tu donación</h2>
-    <ul class="impact-list">
-      <li *ngFor="let item of causeData.impact">
-        <span class="check-icon">✓</span> ${{ item.amount }} {{ item.description }}
-      </li>
-    </ul>
+    <div class="cause-content">
+      <p>{{ causeData.description }}</p>
+      
+      <ul class="benefits-list">
+        <li *ngFor="let benefit of causeData.benefits">
+          <span class="check-icon">✓</span> {{ benefit }}
+        </li>
+      </ul>
+    </div>
+
+    <div class="impact-section" *ngIf="showImpactSection">
+      <h3>El impacto de tu donación</h3>
+      <ul class="impact-list">
+        <li *ngFor="let item of causeData.impact">
+          <span class="check-icon">✓</span> ${{ item.amount }} {{ item.description }}
+        </li>
+      </ul>
+    </div>
+
+    <div class="barra-progreso">
+      <div class="progreso" [style.width]="progress + '%'"></div>
+    </div>
+    <div class="meta-recaudo">
+      <span>${{ currentAmount }} recaudados</span>
+      <span>Meta: ${{ goalAmount }}</span>
+    </div>
   </div>
 </div>

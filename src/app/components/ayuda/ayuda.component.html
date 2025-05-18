@@ -29,7 +29,7 @@
     </div>
     <div class="contenido-seccion mt-4">
       <div *ngIf="seccionActiva === 'productos'">
-        
+
   <div class="grid">
     <!-- COLUMNA IZQUIERDA -->
     <div class="col">
@@ -52,7 +52,9 @@
       </div>
       <div *ngIf="seccionActiva === 'proyecto'">
         <app-form />
-      </div>
+
+        <app-donante-infor/> 
+            </div>
       <div *ngIf="seccionActiva === 'actualizaciones'" >
       <app-form-voluntario/>
       </div>
