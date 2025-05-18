@@ -27,6 +27,7 @@ export class FormComponent implements AfterViewInit {
   customAmount: number | null = null;
   showAmountError: boolean = false;
   donacionAnonima: boolean = false;
+  donacionRecurrente: boolean = false;
 
   numeroIdentificacion: string = '';
   validado = false;
