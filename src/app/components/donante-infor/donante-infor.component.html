@@ -3,15 +3,29 @@
     <h1>{{ causeData.title }}</h1>
     <p class="subtitulo">- {{ causeData.beneficiaries }}</p>
     <p class="lema">Tu ayuda hace la diferencia</p>
-    
+
+    <!-- Tabs -->
     <div class="tabs">
-      <button class="tab active">Sobre la causa</button>
-      <button class="tab">Impacto</button>
+      <button
+        class="tab"
+        [class.active]="currentTab === 'causa'"
+        (click)="changeTab('causa')"
+      >
+        Sobre la causa
+      </button>
+      <button
+        class="tab"
+        [class.active]="currentTab === 'impacto'"
+        (click)="changeTab('impacto')"
+      >
+        Impacto
+      </button>
     </div>
 
-    <div class="cause-content">
+    <!-- Contenido dinámico -->
+    <div class="cause-content" *ngIf="currentTab === 'causa'">
       <p>{{ causeData.description }}</p>
-      
+
       <ul class="benefits-list">
         <li *ngFor="let benefit of causeData.benefits">
           <span class="check-icon">✓</span> {{ benefit }}
@@ -19,7 +33,7 @@
       </ul>
     </div>
 
-    <div class="impact-section" *ngIf="showImpactSection">
+    <div class="impact-section" *ngIf="currentTab === 'impacto'">
       <h3>El impacto de tu donación</h3>
       <ul class="impact-list">
         <li *ngFor="let item of causeData.impact">
@@ -28,6 +42,7 @@
       </ul>
     </div>
 
+    <!-- Barra de progreso y meta -->
     <div class="barra-progreso">
       <div class="progreso" [style.width]="progress + '%'"></div>
     </div>
