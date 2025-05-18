@@ -1,0 +1,40 @@
+.form-voluntariado {
+  background-color: #fff8f0;
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+}
+
+.text-orange {
+  color: #f7941d !important;
+}
+
+.form-label {
+  font-weight: 600;
+  color: #000;
+}
+
+.form-control,
+.form-select {
+  border: 1px solid #f7941d;
+  border-radius: 8px;
+  padding: 0.45rem 0.75rem;
+}
+
+.form-check-input:checked {
+  background-color: #f7941d;
+  border-color: #f7941d;
+}
+
+.btn-orange {
+  background-color: #f7941d;
+  border: none;
+  color: white;
+  font-weight: bold;
+  border-radius: 8px;
+  transition: background-color 0.3s ease;
+}
+
+.btn-orange:hover {
+  background-color: #e0891a;
+}
