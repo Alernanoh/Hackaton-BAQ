@@ -146,27 +146,29 @@
     </div>
 
     <!-- ¿Cuánto quieres donar? -->
-    <h2>¿Cuánto quieres donar?</h2>
-    <div class="amount-options">
-      <button (click)="selectAmount(12)" [class.active]="selectedAmount === 12">$12</button>
-      <button (click)="selectAmount(22)" [class.active]="selectedAmount === 22">$22</button>
-      <button (click)="selectAmount(36)" [class.active]="selectedAmount === 36">$36</button>
-      <button (click)="selectAmount(100)" [class.active]="selectedAmount === 100">$100</button>
-    </div>
-    <div class="amount-input-container" style="display: flex; gap: 0.5rem; align-items: center;">
-      <input
-        type="number"
-        [(ngModel)]="customAmount"
-        placeholder="$ Monto personalizado"
-        class="amount-input"
-        [class.error]="showAmountError"
-        min="2"
-        style="flex: 1;"
-      />
-      <button type="button" class="btn-orange btn-donar-grande" (click)="confirmarMonto()">Donar</button>
-    </div>
-    <div *ngIf="showAmountError" class="error-message">
-      El monto mínimo de donación es $2
+    <div *ngIf="!modoCarrito">
+      <h2>¿Cuánto quieres donar?</h2>
+      <div class="amount-options">
+        <button (click)="selectAmount(12)" [class.active]="selectedAmount === 12">$12</button>
+        <button (click)="selectAmount(22)" [class.active]="selectedAmount === 22">$22</button>
+        <button (click)="selectAmount(36)" [class.active]="selectedAmount === 36">$36</button>
+        <button (click)="selectAmount(100)" [class.active]="selectedAmount === 100">$100</button>
+      </div>
+      <div class="amount-input-container" style="display: flex; gap: 0.5rem; align-items: center;">
+        <input
+          type="number"
+          [(ngModel)]="customAmount"
+          placeholder="$ Monto personalizado"
+          class="amount-input"
+          [class.error]="showAmountError"
+          min="2"
+          style="flex: 1;"
+        />
+        <button type="button" class="btn-orange btn-donar-grande" (click)="confirmarMonto()">Donar</button>
+      </div>
+      <div *ngIf="showAmountError" class="error-message">
+        El monto mínimo de donación es $2
+      </div>
     </div>
 
     <!-- Campo opcional de dedicatoria -->
@@ -188,6 +190,15 @@
     <!-- Botón de PayPal solo si corresponde -->
     <div *ngIf="mostrarBotonPaypal" class="paypal-button-container">
       <div #paypalContainer></div>
+    </div>
+
+    <!-- Botón de donar en modo carrito -->
+    <div *ngIf="modoCarrito" style="text-align:center; margin-top:1.5rem;">
+      <button type="button" class="btn-orange btn-donar-grande" (click)="confirmarMonto()">Donar</button>
+    </div>
+
+    <div class="info-validacion" style="white-space: normal; word-break: break-word; max-width: 100%;">
+      <!-- Mensaje de validación -->
     </div>
   </div>
 </div>
