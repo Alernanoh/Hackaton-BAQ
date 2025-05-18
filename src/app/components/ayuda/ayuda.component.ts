@@ -9,6 +9,7 @@ import { FormsModule } from '@angular/forms';
 import { FormComponent } from '../form/form.component';
 import { ResumenCampanaComponent } from '../resumen-campana/resumen-campana.component';
 import { InformativoComponent } from '../informativo/informativo.component';
+import { FormVoluntarioComponent } from '../form-voluntario/form-voluntario.component';
 
 @Component({
   selector: 'app-ayuda',
@@ -18,7 +19,8 @@ import { InformativoComponent } from '../informativo/informativo.component';
     DonaPropositoComponent,
     ResumenCampanaComponent,
     ProductosListComponent,
-    InformativoComponent
+    InformativoComponent,
+    FormVoluntarioComponent,
   ],
   templateUrl: './ayuda.component.html',
   styleUrl: './ayuda.component.css'
